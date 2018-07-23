@@ -16,7 +16,7 @@ class Login extends React.Component {
     return(
       <div id="opening-login-page">
         <h1>Welcome to Comedy Kiddo!</h1>
-        {(this.props.state.loggingIn === true) ? (
+        {(this.props.state.loggedIn === false && this.props.state.signingUp === false && this.props.state.viewingProfile === false && this.props.state.searching === false) ? (
           <React.Fragment>
             <Form>
               <Form.Field>

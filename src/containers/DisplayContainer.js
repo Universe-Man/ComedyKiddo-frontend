@@ -7,7 +7,7 @@ class DisplayContainer extends React.Component {
   constructor(){
     super();
     this.state = {
-      loggingIn: true,
+      loggedIn: false,
       signingUp: false,
       viewingProfile: false,
       searching: false,
@@ -17,9 +17,9 @@ class DisplayContainer extends React.Component {
   renderLoginForm = () => {
     console.log("logging in");
     this.setState({
-      loggingIn: true,
+      loggedIn: false,
       signingUp: false,
-      viewingProfile: false,
+      viewingProfile: true,
       searching: false,
     })
   }
@@ -27,9 +27,19 @@ class DisplayContainer extends React.Component {
   renderSignUpForm = () => {
     console.log("signing up");
     this.setState({
-      loggingIn: false,
+      loggedIn: false,
       signingUp: true,
       viewingProfile: false,
+      searching: false,
+    })
+  }
+
+  renderProfilePage = () => {
+    console.log("here's the profile page");
+    this.setState({
+      loggedIn: false,
+      signingUp: false,
+      viewingProfile: true,
       searching: false,
     })
   }
@@ -38,7 +48,7 @@ class DisplayContainer extends React.Component {
     return(
       <React.Fragment>
         <Login state={this.state} renderLoginForm={this.renderLoginForm} renderSignUpForm={this.renderSignUpForm} />
-        <Profile state={this.state}/>
+        <Profile state={this.state} renderProfilePage={this.renderProfilePage} />
         <Searcher state={this.state}/>
       </React.Fragment>
     )
