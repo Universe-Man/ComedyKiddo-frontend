@@ -1,4 +1,6 @@
 import React from 'react';
+import '../App.css';
+
 
 class Header extends React.Component {
   constructor(){
@@ -8,7 +10,7 @@ class Header extends React.Component {
 
   render(){
     return(
-      <div>Header</div>
+      <div id='Header'>Header</div>
     )
   }
 }

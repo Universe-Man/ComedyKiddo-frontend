@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.css';
 
 class SearchBar extends React.Component {
   constructor(){
@@ -8,7 +9,7 @@ class SearchBar extends React.Component {
 
   render(){
     return(
-      <div>SearchBar</div>
+      <div id='SearchBar'>SearchBar</div>
     )
   }
 }

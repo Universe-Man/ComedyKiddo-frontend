@@ -13,7 +13,6 @@ class Searcher extends React.Component {
       <React.Fragment>
         <SearchBar />
         <ResultsList />
-
       </React.Fragment>
     )
   }

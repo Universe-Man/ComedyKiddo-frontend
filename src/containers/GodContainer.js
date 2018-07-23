@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import DisplayContainer from '../containers/DisplayContainer';
+import '../App.css';
 
 class GodContainer extends React.Component {
   constructor(){
@@ -10,7 +11,7 @@ class GodContainer extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className='GodContainer'>
         <Header />
         <DisplayContainer />
       </div>

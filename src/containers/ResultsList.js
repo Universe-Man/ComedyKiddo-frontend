@@ -1,8 +1,10 @@
 import React from 'react';
+import '../App.css';
+
 
 const ResultsList = () => {
   return(
-    <div>ResultsList</div>
+    <div id='ResultsList'>ResultsList</div>
   )
 }
 

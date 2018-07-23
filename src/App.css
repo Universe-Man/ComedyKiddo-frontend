@@ -1,5 +1,31 @@
+/* OFFICIAL BACKGROUND COLOR = #b3c6ff */
+/*
+:root {
+  background-color: brown;
+} */
+/* :root {
+  --main-bg-color: brown;
+} */
+
 .App {
   text-align: center;
+  background-color: #b3c6ff;
+}
+
+#Header {
+  background-color: #b3c6ff;
+}
+
+#SearchBar {
+  background-color: #b3c6ff;
+}
+
+#ResultsList {
+  background-color: #b3c6ff;
+}
+
+#Profile {
+  background-color: #b3c6ff;
 }
 
 .App-logo {
@@ -25,4 +51,15 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+#opening-login-page {
+  position: relative;
+  top: 300px;
+  margin: auto;
+  width: 30%;
+  height: 125px;
+  background-color: #e5ffcc;
+  border: solid 7px #00ffcc;
+
 }
