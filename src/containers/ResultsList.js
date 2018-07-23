@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 
 
-const ResultsList = () => {
+const ResultsList = (props) => {
   return(
     <div id='ResultsList'>ResultsList</div>
   )

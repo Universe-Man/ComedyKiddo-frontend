@@ -3,11 +3,12 @@ import Login from '../components/Login';
 import Profile from '../components/Profile';
 import Searcher from '../components/Searcher';
 
-
 class DisplayContainer extends React.Component {
   constructor(){
     super();
-    this.state = {}
+    this.state = {
+      
+    }
   }
 
   render(){
