@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import DisplayContainer from '../containers/DisplayContainer';
-import '../App.css';
+import '../assets/App.css';
 
 class GodContainer extends React.Component {
   constructor(){

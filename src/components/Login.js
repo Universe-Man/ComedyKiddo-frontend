@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
-import '../App.css';
+import '../assets/App.css';
 
 class Login extends React.Component {
   constructor(){
