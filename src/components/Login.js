@@ -6,26 +6,17 @@ class Login extends React.Component {
   constructor(){
     super();
     this.state = {
-      signingUp: false,
+      // signingUp: false,
     }
   }
 
-  renderLoginForm = () => {
-    console.log("logging in");
-  }
 
-  renderSignUpForm = () => {
-    console.log("signing up");
-    this.setState({
-      signingUp: true
-    })
-  }
 
   render(){
     return(
       <div id="opening-login-page">
         <h1>Welcome to Comedy Kiddo!</h1>
-        {(this.state.signingUp === false) ? (
+        {(this.props.state.loggingIn === true) ? (
           <React.Fragment>
             <Form>
               <Form.Field>
@@ -37,13 +28,15 @@ class Login extends React.Component {
                 <input placeholder='Password' type='password'/>
               </Form.Field>
             </Form>
-            <Button primary onClick={this.renderLoginForm}>Login</Button>
+            <Button primary onClick={this.props.renderLoginForm}>Login</Button>
             <br></br>
             -OR-
             <br></br>
-            <Button secondary onClick={this.renderSignUpForm}>Sign Up</Button>
+            <Button secondary onClick={this.props.renderSignUpForm}>Sign Up</Button>
           </React.Fragment>
-          ) : (
+          ) : (null)
+        }
+        {(this.props.state.signingUp === true) ? (
           <React.Fragment>
             <Form>
               <Form.Field>
@@ -64,8 +57,9 @@ class Login extends React.Component {
               <Button primary type='submit'>Submit</Button>
             </Form>
           </React.Fragment>
-          )
-        }
+          ) : (null)}
+
+
 
 
       </div>
