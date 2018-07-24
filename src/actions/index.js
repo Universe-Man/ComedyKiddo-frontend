@@ -6,6 +6,7 @@
 // }
 
 export function userLogsIn() {
+  console.log('logging in');
   return {
     type: "LOGGED_IN",
     // payload: {

@@ -43,11 +43,11 @@ class Login extends React.Component {
                 <input placeholder='Password' type='password'/>
               </Form.Field>
             </Form>
-            <Button primary onClick={this.props.userLogsIn}>Login</Button>
+            <Button primary onClick={userLogsIn}>Login</Button>
             <br></br>
             -OR-
             <br></br>
-            <Button secondary onClick={this.userSigningUp}>Sign Up</Button>
+            <Button secondary onClick={this.props.userSigningUp}>Sign Up</Button>
           </React.Fragment>
           ) : (null)
         }
@@ -101,6 +101,10 @@ function mapDispatchToProps(dispatch) {
   return {
     userLoggingIn: () => {
       dispatch(userLogsIn())
+    },
+    userSigningUp: () => {
+      dispatch(userSigningUp())
+
     }
   }
 }
