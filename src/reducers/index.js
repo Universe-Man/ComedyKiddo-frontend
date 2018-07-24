@@ -1,36 +1,50 @@
-const initialState = {}
-
-const renderState = {
+const initialState = {
+  currentUser: {},
+  profileBeingViewed: {},
+  allUsers: [],
+  allTeams: [],
+  allShows: [],
   loggedIn: false,
   signingUp: false,
   viewingProfile: false,
   searching: false,
 }
 
+// const renderState = {
+//   loggedIn: false,
+//   signingUp: false,
+//   viewingProfile: false,
+//   searching: false,
+// }
+
 export const reducer = (state = initialState, action) => {
   switch(action.type){
     case "LOGGED_IN":
       return {
         ...state,
-        ...renderState,
+        //...renderState,
         loggedIn: true,
       }
     case "SIGNING_UP":
-      return { ...state,
-        ...renderState,
+      return {
+        ...state,
+        //...renderState,
         signingUp: true,
       }
     case "VIEWING_PROFILE":
-      return { ...state,
-        ...renderState,
+      return {
+        ...state,
+        //...renderState,
         viewingProfile: true,
       }
     case "SEARCHING":
-      return { ...state,
-        ...renderState,
+      return {
+        ...state,
+        //...renderState,
         searching: true
       }
-    return state;
+    default:
+      return state;
   }
 }
 

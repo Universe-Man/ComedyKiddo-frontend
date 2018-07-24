@@ -1,31 +1,37 @@
 import React from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import '../assets/App.css';
+import { connect } from 'react-redux';
+import { userLogsIn, userSigningUp } from '../actions/index';
+// import {displayNearbyEventsAction} from '../actions';
 
 class Login extends React.Component {
   constructor(){
     super();
-    this.state = {
-      signingUp: false,
-    }
+    // this.state = {
+    //   signingUp: false,
+    // }
   }
 
-  renderLoginForm = () => {
-    console.log("logging in");
-  }
+  // renderLoginForm = () => {
+  //   console.log("logging in");
+  // }
 
-  renderSignUpForm = () => {
-    console.log("signing up");
-    this.setState({
-      signingUp: true
-    })
-  }
+  // renderSignUpForm = () => {
+  //   console.log("signing up");
+  //   this.setState({
+  //     signingUp: true
+  //   })
+  // }
+
+  //******************************** HOW DO I PASS THE SIGNINGUP STATE TO THIS COMPONENT SO THAT IT RENDERS PROPERLY??
 
   render(){
+    console.log('hello',this.props);
     return(
       <div id="opening-login-page">
         <h1>Welcome to Comedy Kiddo!</h1>
-        {(this.state.signingUp === false) ? (
+        {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false) ? (
           <React.Fragment>
             <Form>
               <Form.Field>
@@ -37,13 +43,15 @@ class Login extends React.Component {
                 <input placeholder='Password' type='password'/>
               </Form.Field>
             </Form>
-            <Button primary onClick={this.renderLoginForm}>Login</Button>
+            <Button primary onClick={this.props.userLogsIn}>Login</Button>
             <br></br>
             -OR-
             <br></br>
-            <Button secondary onClick={this.renderSignUpForm}>Sign Up</Button>
+            <Button secondary onClick={this.userSigningUp}>Sign Up</Button>
           </React.Fragment>
-          ) : (
+          ) : (null)
+        }
+        {(this.props.signingUp === true) ? (
           <React.Fragment>
             <Form>
               <Form.Field>
@@ -64,8 +72,9 @@ class Login extends React.Component {
               <Button primary type='submit'>Submit</Button>
             </Form>
           </React.Fragment>
-          )
+          ) : (null)
         }
+
 
 
       </div>
@@ -77,5 +86,24 @@ class Login extends React.Component {
     )
   }
 }
+// ****************************I HAVE NO IDEA WHAT TO PUT HERE? ISN'T THE ACTION ALREADY WRITTEN?
+function mapStateToProps(state) {
+  console.log('look at state', state);
+  return {
+    loggedIn: state.loggedIn,
+    signingUp: state.signingUp,
+    viewingProfile: state.viewingProfile,
+    searching: state.searching,
+  }
+}
 
-export default Login;
+function mapDispatchToProps(dispatch) {
+  return {
+    userLoggingIn: () => {
+      dispatch(userLogsIn())
+    }
+  }
+}
+
+// ***********************FOR MIKE: DO I NEED TO PUT NULL BELOW IF I AM NOT USING ONE OF THE ABOVE FUNCTIONS? ALSO DO YOU HAVE TO USE TERNARY INSIDE JSX? OR CAN YOU USE IF/ELSE TOO?
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

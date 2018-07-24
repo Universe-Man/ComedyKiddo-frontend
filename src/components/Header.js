@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/App.css';
+import { connect } from 'react-redux';
 
 class Header extends React.Component {
   constructor(){
@@ -9,7 +10,9 @@ class Header extends React.Component {
 
   render(){
     return(
-      <div id='Header'>Header</div>
+      <div id='Header'>
+        Headers
+      </div>
     )
   }
 }

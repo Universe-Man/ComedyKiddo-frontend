@@ -1,6 +1,8 @@
 import React from 'react';
 import SearchBar from '../components/SearchBar';
 import ResultsList from '../containers/ResultsList';
+import { connect } from 'react-redux';
+// import { userSearches } from '../actions/index';
 
 class Searcher extends React.Component {
   constructor(){
@@ -9,13 +11,26 @@ class Searcher extends React.Component {
   }
 
   render(){
+    console.log('LOOK AT ME', this.props.searching);
     return(
       <React.Fragment>
-        <SearchBar />
-        <ResultsList />
+        {(this.props.searching === true) ? (
+          <React.Fragment>
+            <SearchBar />
+            <ResultsList />
+          </React.Fragment>
+        ) : (<div></div>)
+        }
       </React.Fragment>
+
     )
   }
 }
 
-export default Searcher;
+function mapStateToProps(state) {
+  return {
+    searching: state.searching
+  }
+}
+
+export default connect(mapStateToProps)(Searcher);
