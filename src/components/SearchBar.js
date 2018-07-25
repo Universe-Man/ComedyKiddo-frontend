@@ -7,22 +7,20 @@ class SearchBar extends React.Component {
     this.state = {}
   }
 
-  getSearchTerm = (event) => {
-    console.log(event.target.value);
-  }
+
 
   render(){
     return(
       <div id='SearchBar'>
         <form>
-          <input type='text' placeholder='Search' onChange={this.getSearchTerm}/>
-          <select className="ui dropdown">
+          <input type='text' placeholder='Search' onChange={this.props.getSearchTerm}/>
+          <select className="ui dropdown" onChange={this.props.getSearchCategory}>
             <option value="">I'm Looking For...</option>
-            <option value="0">Players to Join Team</option>
-            <option value="1">Team to Join</option>
-            <option value="2">Show for Team</option>
-            <option value="3">Team for Show</option>
-            <option value="4">Coach</option>
+            <option value="player-for-team">Players to Join Team</option>
+            <option value="team-for-player">Team to Join</option>
+            <option value="show-for-team">Show for Team</option>
+            <option value="team-for-show">Team for Show</option>
+            <option value="coach">Coach</option>
           </select>
         </form>
       </div>

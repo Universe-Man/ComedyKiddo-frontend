@@ -7,7 +7,25 @@ import { connect } from 'react-redux';
 class Searcher extends React.Component {
   constructor(){
     super();
-    this.state = {}
+    this.state = {
+      searchTerm: "",
+      searchCategory: "",
+      filteredUsers: [],
+      filteredTeams: [],
+      filteredShows: [],
+    }
+  }
+
+  getSearchTerm = (event) => {
+    this.setState({
+      searchTerm: event.target.value
+    })
+  }
+
+  getSearchCategory = (event) => {
+    this.setState({
+      searchCategory: event.target.value
+    })
   }
 
   render(){
@@ -16,7 +34,7 @@ class Searcher extends React.Component {
       <React.Fragment>
         {(this.props.searching === true) ? (
           <React.Fragment>
-            <SearchBar />
+            <SearchBar getSearchTerm={this.getSearchTerm} getSearchCategory={this.getSearchCategory} />
             <ResultsList />
           </React.Fragment>
         ) : (<div></div>)
@@ -34,3 +52,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Searcher);
+
+
+//////// I HAVE TO PASS ALL THE USERS, TEAMS, AND SHOWS VIA REDUX AND CAN FILTER THEM HERE!! ///////////////////////////

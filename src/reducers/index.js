@@ -63,6 +63,21 @@ export const reducer = (state = initialState, action) => {
         searching: true,
         viewingProfile: false,
       }
+    case "GET_ALL_USERS":
+      return {
+        ...state,
+        allUsers: action.payload
+      }
+    case "GET_ALL_TEAMS":
+      return {
+        ...state,
+        allTeams: action.payload
+      }
+    case "GET_ALL_SHOWS":
+      return {
+        ...state,
+        allShows: action.payload
+      }
     default:
       return state;
   }
