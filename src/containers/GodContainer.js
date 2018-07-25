@@ -24,7 +24,7 @@ class GodContainer extends React.Component {
       .then(json => this.props.gettingAllTheTeams(json))
     fetch(showURL)
       .then(res => res.json())
-      .then(json => this.props.gettingAllTheShows(json))  
+      .then(json => this.props.gettingAllTheShows(json))
   }
 
   render(){

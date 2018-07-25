@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 // import { userSearches } from '../actions/index';
 
 class Searcher extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       searchTerm: "",
       searchCategory: "",
@@ -14,6 +14,11 @@ class Searcher extends React.Component {
       filteredTeams: [],
       filteredShows: [],
     }
+  }
+
+// MIKE IS REACT BATMAN!! (REVIEW COMPONENT LIFECYCLE CHART)
+  componentWillReceiveProps(){
+    this.filterStuff()
   }
 
   getSearchTerm = (event) => {

@@ -13,15 +13,15 @@ class SearchBar extends React.Component {
     return(
       <div id='SearchBar'>
         <form>
-          <input type='text' placeholder='Search' onChange={this.props.getSearchTerm}/>
+          <input type='text' placeholder='Search' autoFocus='autofocus' onChange={this.props.getSearchTerm}/>
+          <label>I'm Looking For...</label>
           <select className="ui dropdown" onChange={this.props.getSearchCategory}>
-            <option value="">I'm Looking For...</option>
+            <option value="just-browsing">Just Browsing</option>
             <option value="player-for-team">Players to Join Team</option>
             <option value="team-for-player">Team to Join</option>
             <option value="show-for-team">Show for Team</option>
             <option value="team-for-show">Team for Show</option>
             <option value="coach">Coach</option>
-            <option value="just-browsing">Just Browsing</option>
           </select>
         </form>
       </div>
