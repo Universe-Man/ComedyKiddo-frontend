@@ -25,12 +25,14 @@ export const reducer = (state = initialState, action) => {
             ...state,
             loggedIn: true,
             signingUp: false,
+            viewingProfile: true,
           }
         } else {
           return {
             ...state,
             //...renderState,
             loggedIn: true,
+            viewingProfile: true,
           }
         }
     case "LOGGED_OUT":
@@ -38,6 +40,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         //...renderState,
         loggedIn: false,
+        viewingProfile: false,
       }
     case "SIGNING_UP":
       return {
@@ -50,12 +53,14 @@ export const reducer = (state = initialState, action) => {
         ...state,
         //...renderState,
         viewingProfile: true,
+        searching: false,
       }
     case "SEARCHING":
       return {
         ...state,
         //...renderState,
-        searching: true
+        searching: true,
+        viewingProfile: false,
       }
     default:
       return state;

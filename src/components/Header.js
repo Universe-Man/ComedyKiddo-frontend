@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { connect } from 'react-redux';
 import { Input, Menu } from 'semantic-ui-react'
-import { userLogsOut } from '../actions/index';
+import { userLogsOut, userViewProfile, userSearches } from '../actions/index';
 
 
 class Header extends React.Component {
@@ -16,11 +16,13 @@ class Header extends React.Component {
   handleProfileClick = () => {
     console.log('profile!');
     this.setState({ activeItem: 'profile' })
+    this.props.userIsViewingProfile()
   }
 
   handleSearchClick = () => {
     console.log('search!');
     this.setState({ activeItem: 'search' })
+    this.props.userIsSearching()
   }
 
   handleLogoutClick = () => {
@@ -66,6 +68,12 @@ function mapDispatchToProps(dispatch) {
   return {
     userLoggingOut: () => {
       dispatch(userLogsOut())
+    },
+    userIsViewingProfile: () => {
+      dispatch(userViewProfile())
+    },
+    userIsSearching: () => {
+      dispatch(userSearches())
     }
   }
 }
