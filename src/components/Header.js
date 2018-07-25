@@ -2,6 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { connect } from 'react-redux';
 import { Input, Menu } from 'semantic-ui-react'
+import { userLogsOut } from '../actions/index';
 
 
 class Header extends React.Component {
@@ -25,6 +26,7 @@ class Header extends React.Component {
   handleLogoutClick = () => {
     console.log('logout!');
     this.setState({ activeItem: 'logout' })
+    this.props.userLoggingOut()
   }
 
   render(){
@@ -60,7 +62,15 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Header);
+function mapDispatchToProps(dispatch) {
+  return {
+    userLoggingOut: () => {
+      dispatch(userLogsOut())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 ///////////////////////
 

@@ -33,6 +33,12 @@ export const reducer = (state = initialState, action) => {
             loggedIn: true,
           }
         }
+    case "LOGGED_OUT":
+      return {
+        ...state,
+        //...renderState,
+        loggedIn: false,
+      }
     case "SIGNING_UP":
       return {
         ...state,

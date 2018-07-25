@@ -6,12 +6,17 @@
 // }
 
 export function userLogsIn() {
-  console.log('logging in');
   return {
     type: "LOGGED_IN",
     // payload: {
     //   loggedIn: true
     // } BECAUSE THE CHANGE IS IN THE REDUCER ALREADY, ONLY NEED PAYLOAD WHEN INTRODUCING NEW INFO
+  }
+}
+
+export function userLogsOut() {
+  return {
+    type: "LOGGED_OUT",
   }
 }
 
