@@ -20,11 +20,19 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch(action.type){
     case "LOGGED_IN":
-      return {
-        ...state,
-        //...renderState,
-        loggedIn: true,
-      }
+        if (state.signingUp === true) {
+          return {
+            ...state,
+            loggedIn: true,
+            signingUp: false,
+          }
+        } else {
+          return {
+            ...state,
+            //...renderState,
+            loggedIn: true,
+          }
+        }
     case "SIGNING_UP":
       return {
         ...state,
