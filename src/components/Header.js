@@ -25,8 +25,8 @@ class Header extends React.Component {
 
   handleLogoutClick = () => {
     console.log('logout!');
-    this.setState({ activeItem: 'logout' })
     this.props.userLoggingOut()
+    this.setState({ activeItem: 'profile' })
   }
 
   render(){
