@@ -56,7 +56,7 @@
   to { transform: rotate(360deg); }
 }
 
-#opening-login-page {
+.opening-login-page {
   position: relative;
   top: 300px;
   margin: auto;

@@ -3,7 +3,6 @@ import { Button, Checkbox, Form } from 'semantic-ui-react'
 import '../assets/App.css';
 import { connect } from 'react-redux';
 import { userLogsIn, userSigningUp } from '../actions/index';
-// import {displayNearbyEventsAction} from '../actions';
 
 class Login extends React.Component {
   constructor(){
@@ -29,10 +28,10 @@ class Login extends React.Component {
   render(){
     console.log('hello',this.props);
     return(
-      <div id="opening-login-page">
-        <h1>Welcome to Comedy Kiddo!</h1>
+      <React.Fragment>
         {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false) ? (
-          <React.Fragment>
+          <div className="opening-login-page">
+            <h1>Welcome to Comedy Kiddo!</h1>
             <Form>
               <Form.Field>
                 <label>Email</label>
@@ -43,17 +42,17 @@ class Login extends React.Component {
                 <input placeholder='Password' type='password'/>
               </Form.Field>
             </Form>
-            <Button primary onClick={userLogsIn}>Login</Button>
+            <Button primary onClick={this.props.userLoggingIn}>Login</Button>
             <br></br>
             -OR-
             <br></br>
             <Button secondary onClick={this.props.userSigningUp}>Sign Up</Button>
-          </React.Fragment>
+          </div>
           ) : (null)
         }
         {(this.props.signingUp === true) ? (
-          <React.Fragment>
-            <Form>
+          <div className="opening-login-page">
+            <Form onSubmit={this.props.userLoggingIn}>
               <Form.Field>
                 <label>Full Name</label>
                 <input placeholder='Full Name' />
@@ -71,13 +70,10 @@ class Login extends React.Component {
               </Form.Field>
               <Button primary type='submit'>Submit</Button>
             </Form>
-          </React.Fragment>
+          </div>
           ) : (null)
         }
-
-
-
-      </div>
+      </React.Fragment>
       // ANOTHER WAY TO WRITE THE BUTTONS
       // <div>
       //   <Button content='Primary' primary />
