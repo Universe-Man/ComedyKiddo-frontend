@@ -43,4 +43,10 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+function mapStateToProps(state) {
+  return {
+    viewingProfile: state.viewingProfile
+  }
+}
+
+export default connect(mapStateToProps)(Profile);

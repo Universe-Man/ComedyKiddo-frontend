@@ -41,6 +41,7 @@ export const reducer = (state = initialState, action) => {
         //...renderState,
         loggedIn: false,
         viewingProfile: false,
+        searching: false,
       }
     case "SIGNING_UP":
       return {
