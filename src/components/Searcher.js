@@ -19,23 +19,36 @@ class Searcher extends React.Component {
   getSearchTerm = (event) => {
     this.setState({
       searchTerm: event.target.value
-    })
+    }, () => {this.filterStuff()})
   }
 
   getSearchCategory = (event) => {
     this.setState({
       searchCategory: event.target.value
-    })
+    }, () => {this.filterStuff()})
   }
 
+  filterStuff = () => {
+    let filteredUsers = this.props.allUsers.filter(user => user.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    this.setState({ filteredUsers: filteredUsers})
+    let filteredTeams = this.props.allTeams.filter(team => team.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    this.setState({ filteredTeams: filteredTeams})
+    let filteredShows = this.props.allShows.filter(show => show.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    this.setState({ filteredShows: filteredShows})
+  }
+
+
+
   render(){
-    console.log('LOOK AT ME', this.props.searching);
+    console.log("state's allUsers", this.props.allUsers);
+    console.log("state's allTeams", this.props.allTeams);
+    console.log("state's allShows", this.props.allShows);
     return(
       <React.Fragment>
         {(this.props.searching === true) ? (
           <React.Fragment>
             <SearchBar getSearchTerm={this.getSearchTerm} getSearchCategory={this.getSearchCategory} />
-            <ResultsList />
+            <ResultsList filteredUsers={this.state.filteredUsers} filteredTeams={this.state.filteredTeams} filteredShows={this.state.filteredShows}/>
           </React.Fragment>
         ) : (<div></div>)
         }
@@ -47,7 +60,10 @@ class Searcher extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    searching: state.searching
+    searching: state.searching,
+    allUsers: state.allUsers,
+    allTeams: state.allTeams,
+    allShows: state.allShows,
   }
 }
 

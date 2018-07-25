@@ -21,6 +21,7 @@ class SearchBar extends React.Component {
             <option value="show-for-team">Show for Team</option>
             <option value="team-for-show">Team for Show</option>
             <option value="coach">Coach</option>
+            <option value="just-browsing">Just Browsing</option>
           </select>
         </form>
       </div>
