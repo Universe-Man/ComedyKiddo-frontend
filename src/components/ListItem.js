@@ -3,7 +3,7 @@ import React from 'react';
 const ListItem = (props) => {
   return (
     <li>
-      {props.user.name}
+      {props.dataObj.name}
     </li>
   )
 }

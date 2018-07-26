@@ -26,7 +26,7 @@ class Login extends React.Component {
   //******************************** HOW DO I PASS THE SIGNINGUP STATE TO THIS COMPONENT SO THAT IT RENDERS PROPERLY??
 
   render(){
-    console.log('hello',this.props);
+    // console.log('hello',this.props);
     return(
       <React.Fragment>
         {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false) ? (
@@ -84,7 +84,7 @@ class Login extends React.Component {
 }
 // ****************************I HAVE NO IDEA WHAT TO PUT HERE? ISN'T THE ACTION ALREADY WRITTEN?
 function mapStateToProps(state) {
-  console.log('look at state', state);
+  // console.log('look at state', state);
   return {
     loggedIn: state.loggedIn,
     signingUp: state.signingUp,

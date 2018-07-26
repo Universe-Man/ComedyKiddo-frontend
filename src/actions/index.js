@@ -40,7 +40,6 @@ export function userSearches() {
 }
 
 export function getAllUsers(users) {
-  console.log('holy hell look at these users', users);
   return {
     type: "GET_ALL_USERS",
     payload: users
@@ -48,7 +47,6 @@ export function getAllUsers(users) {
 }
 
 export function getAllTeams(teams) {
-  console.log('holy hell look at these teams', teams);
   return {
     type: "GET_ALL_TEAMS",
     payload: teams
@@ -56,7 +54,6 @@ export function getAllTeams(teams) {
 }
 
 export function getAllShows(shows) {
-  console.log('holy hell look at these shows', shows);
   return {
     type: "GET_ALL_SHOWS",
     payload: shows

@@ -4,18 +4,28 @@ import '../assets/App.css';
 
 const ResultsList = (props) => {
 
-  console.log('results list filtered users brah', props.filteredUsers);
-  console.log('results list filtered teams brah', props.filteredTeams);
-  console.log('results list filtered shows brah', props.filteredShows);
+  // console.log('results list filtered users brah', props.filteredUsers);
+  // console.log('results list filtered teams brah', props.filteredTeams);
+  // console.log('results list filtered shows brah', props.filteredShows);
 
-  let currentFilteredData = props.filteredUsers.map(user => {
-    return ( <ListItem user={user} id={user.id} key={user.id}/> )
-  })
+
+// let currentFilteredData = [];
+// console.log('OH SHIT!', this.currentFilteredData);
+// NEED TO ADD WHETHER COACH OR LOOKING FOR CERTAIN THINGS, ETC. FILTER!!
+
+  let renderData = props.filteredData.map(dataObj => {
+    debugger
+    return ( <ListItem dataObj={dataObj} id={dataObj.id} key={dataObj.id}/> )
+     })
+
+
+console.log("THIS IS IN THE RESULTS LIST", props.filteredData);
+
 
 
   return(
     <div id='ResultsList'>
-      {currentFilteredData}
+      {renderData}
     </div>
   )
 }

@@ -14,7 +14,7 @@ import { Provider } from 'react-redux';
 
 const store = createStore(reducer)
 
-console.log("the store",store.getState());
+// console.log("the store",store.getState());
 // console.log(store);
 // console.log('after createStore', store.getState());
 //
