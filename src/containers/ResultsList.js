@@ -14,8 +14,7 @@ const ResultsList = (props) => {
 // NEED TO ADD WHETHER COACH OR LOOKING FOR CERTAIN THINGS, ETC. FILTER!!
 
   let renderData = props.filteredData.map(dataObj => {
-    debugger
-    return ( <ListItem dataObj={dataObj} id={dataObj.id} key={dataObj.id}/> )
+    return ( <ListItem dataObj={dataObj} id={`${dataObj.source}-${dataObj.id}`} key={`${dataObj.source}-${dataObj.id}`}/> )
      })
 
 
