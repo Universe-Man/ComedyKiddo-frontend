@@ -8,27 +8,27 @@ import { userLogsOut, userViewProfile, userSearches } from '../actions/index';
 class Header extends React.Component {
   constructor(){
     super();
-    this.state = {
-      activeItem: 'profile'
-    }
+    // this.state = {
+    //   activeItem: 'profile'
+    // }
   }
 
   handleProfileClick = () => {
     console.log('profile!');
-    this.setState({ activeItem: 'profile' })
+    // this.setState({ activeItem: 'profile' })
     this.props.userIsViewingProfile()
   }
 
   handleSearchClick = () => {
     console.log('search!');
-    this.setState({ activeItem: 'search' })
+    // this.setState({ activeItem: 'search' })
     this.props.userIsSearching()
   }
 
   handleLogoutClick = () => {
     console.log('logout!');
     this.props.userLoggingOut()
-    this.setState({ activeItem: 'profile' })
+    // this.setState({ activeItem: 'profile' })
   }
 
   render(){
@@ -37,16 +37,16 @@ class Header extends React.Component {
         {(this.props.loggedIn === false) ? (null) : (
           <div id='Header'>
             <Menu className='menu-bar' >
-              <Menu.Item name='profile' active={this.state.activeItem === 'profile'} onClick={this.handleProfileClick} />
+              <Menu.Item name='profile' active={this.props.activeHeaderItem === 'profile'} onClick={this.handleProfileClick} />
               <Menu.Item
                 name='search'
-                active={this.state.activeItem === 'search'}
+                active={this.props.activeHeaderItem === 'search'}
                 onClick={this.handleSearchClick}
               />
             <Menu.Menu position='right'>
                 <Menu.Item
                   name='logout'
-                  active={this.state.activeItem === 'logout'}
+                  active={this.props.activeHeaderItem === 'logout'}
                   onClick={this.handleLogoutClick}
                 />
               </Menu.Menu>
@@ -60,7 +60,8 @@ class Header extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    activeHeaderItem: state.activeHeaderItem,
   }
 }
 

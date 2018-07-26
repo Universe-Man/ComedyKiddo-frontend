@@ -8,6 +8,7 @@ const initialState = {
   signingUp: false,
   viewingProfile: false,
   searching: false,
+  activeHeaderItem: "profile",
 }
 
 // const renderState = {
@@ -26,6 +27,7 @@ export const reducer = (state = initialState, action) => {
             loggedIn: true,
             signingUp: false,
             viewingProfile: true,
+            activeHeaderItem: "profile",
           }
         } else {
           return {
@@ -33,6 +35,7 @@ export const reducer = (state = initialState, action) => {
             //...renderState,
             loggedIn: true,
             viewingProfile: true,
+            activeHeaderItem: "profile",
           }
         }
     case "LOGGED_OUT":
@@ -42,6 +45,7 @@ export const reducer = (state = initialState, action) => {
         loggedIn: false,
         viewingProfile: false,
         searching: false,
+        activeHeaderItem: "profile",
       }
     case "SIGNING_UP":
       return {
@@ -55,6 +59,7 @@ export const reducer = (state = initialState, action) => {
         //...renderState,
         viewingProfile: true,
         searching: false,
+        activeHeaderItem: "profile",
       }
     case "SEARCHING":
       return {
@@ -62,6 +67,7 @@ export const reducer = (state = initialState, action) => {
         //...renderState,
         searching: true,
         viewingProfile: false,
+        activeHeaderItem: "search",
       }
     case "GET_ALL_USERS":
       return {
@@ -84,6 +90,7 @@ export const reducer = (state = initialState, action) => {
         profileBeingViewed: action.payload,
         viewingProfile: true,
         searching: false,
+        activeHeaderItem: "profile",
       }
     default:
       return state;
