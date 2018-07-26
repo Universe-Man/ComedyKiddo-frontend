@@ -81,7 +81,9 @@ export const reducer = (state = initialState, action) => {
     case "RENDER_THIS_PROFILE":
       return {
         ...state,
-        profileBeingViewed: action.payload
+        profileBeingViewed: action.payload,
+        viewingProfile: true,
+        searching: false,
       }
     default:
       return state;
