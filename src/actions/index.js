@@ -58,7 +58,13 @@ export function getAllShows(shows) {
     type: "GET_ALL_SHOWS",
     payload: shows
   }
+}
 
+export function renderThisProfile(profile) {
+  return {
+    type: "RENDER_THIS_PROFILE",
+    payload: profile
+  }
 }
 
 //////////////CRUD STUFF????//////////////

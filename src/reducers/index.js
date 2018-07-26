@@ -78,10 +78,16 @@ export const reducer = (state = initialState, action) => {
         ...state,
         allShows: action.payload
       }
+    case "RENDER_THIS_PROFILE":
+      return {
+        ...state,
+        profileBeingViewed: action.payload
+      }
     default:
       return state;
   }
 }
+
 
 export default reducer;
 

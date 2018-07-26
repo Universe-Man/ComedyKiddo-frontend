@@ -1,11 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { renderThisProfile } from '../actions/index';
+
 
 const ListItem = (props) => {
   return (
-    <li>
+    <li onClick={() => {props.selectProfile(props.dataObj)}}>
       {props.dataObj.name}
     </li>
   )
 }
 
-export default ListItem;
+function mapDispatchToProps(dispatch) {
+  return {
+    selectProfile: (profile) => {
+      dispatch(renderThisProfile(profile))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ListItem);

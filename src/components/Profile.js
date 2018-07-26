@@ -12,6 +12,7 @@ class Profile extends React.Component {
   }
 
   render(){
+    console.log("the current profile?", this.props.profileBeingViewed);
     return(
       <React.Fragment>
         {(this.props.viewingProfile === true) ? (
@@ -45,7 +46,8 @@ class Profile extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    viewingProfile: state.viewingProfile
+    viewingProfile: state.viewingProfile,
+    profileBeingViewed: state.profileBeingViewed,
   }
 }
 
