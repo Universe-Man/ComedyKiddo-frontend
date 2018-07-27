@@ -54,6 +54,10 @@ export const reducer = (state = initialState, action) => {
         activeHeaderItem: "profile",
         profileBeingViewed: {},
         currentUser: {},
+        editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
       }
     case "SIGNING_UP":
       return {
@@ -76,6 +80,10 @@ export const reducer = (state = initialState, action) => {
         searching: true,
         viewingProfile: false,
         activeHeaderItem: "search",
+        editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
       }
     case "GET_ALL_USERS":
       return {

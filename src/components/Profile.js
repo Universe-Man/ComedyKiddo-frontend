@@ -82,10 +82,7 @@ render(){
                   ) : (null)}
                 </Container>
 
-
-
                 {(this.props.editingProfile === true) ? (
-
                   <Form>
                     <Form.Group widths='equal'>
                       <Form.Input fluid label='Full Name' placeholder='Full Name' />
@@ -97,8 +94,43 @@ render(){
                     <Form.Button secondary>Cancel</Form.Button>
                     <Form.Button color='red'>Delete Profile</Form.Button>
                   </Form>
-
                 ) : (null)}
+
+                {(this.props.editingTeams === true) ? (
+                  <Form>
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid label='Team Name' placeholder='Team Name' />
+                      <Form.Input fluid label='Upload Team Picture' placeholder='Upload Team Picture' />
+                    </Form.Group>
+                    <Form.Button primary>Save</Form.Button>
+                    <Form.Button secondary>Cancel</Form.Button>
+                    <Form.Button color='red'>Delete Team</Form.Button>
+                  </Form>
+                ) : (null)}
+
+                {(this.props.editingShows === true) ? (
+                  <Form>
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid label='Show Name' placeholder='Show Name' />
+                      <Form.Input fluid label='Upload Show Picture' placeholder='Upload Show Picture' />
+                    </Form.Group>
+                    <Form.Button primary>Save</Form.Button>
+                    <Form.Button secondary>Cancel</Form.Button>
+                    <Form.Button color='red'>Delete Show</Form.Button>
+                  </Form>
+                ) : (null)}
+
+                {(this.props.editingNotes === true) ? (
+                  <Form>
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid label='Note Name' placeholder='Note Name' />
+                    </Form.Group>
+                    <Form.Button primary>Save</Form.Button>
+                    <Form.Button secondary>Cancel</Form.Button>
+                    <Form.Button color='red'>Delete Note</Form.Button>
+                  </Form>
+                ) : (null)}
+
               </div>
               ) : (null)
             }
