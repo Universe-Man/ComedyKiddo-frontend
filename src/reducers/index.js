@@ -9,6 +9,7 @@ const initialState = {
   viewingProfile: false,
   searching: false,
   activeHeaderItem: "profile",
+  editingProfile: false,
 }
 
 // const renderState = {
@@ -91,6 +92,11 @@ export const reducer = (state = initialState, action) => {
         viewingProfile: true,
         searching: false,
         activeHeaderItem: "profile",
+      }
+    case "EDIT_PROFILE":
+      return {
+        ...state,
+        editingProfile: true,
       }
     default:
       return state;

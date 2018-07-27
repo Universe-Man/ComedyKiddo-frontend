@@ -67,6 +67,11 @@ export function renderThisProfile(profile) {
   }
 }
 
+export function editProfile() {
+  return {
+    type: "EDIT_PROFILE"
+  }
+}
 //////////////CRUD STUFF????//////////////
 // (NEED PAYLOADS BELOW!!)
 // export function createUser() {

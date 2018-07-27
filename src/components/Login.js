@@ -25,6 +25,17 @@ class Login extends React.Component {
 
   //******************************** HOW DO I PASS THE SIGNINGUP STATE TO THIS COMPONENT SO THAT IT RENDERS PROPERLY??
 
+  handleLogin = () => {
+    // fetch
+    // body => JSON.strignigy(state)
+    // .then
+
+    // to fake:
+    // createToken => ;dfs;lafj;adfjs;fj
+    const currentUser = { username: "" }
+    this.props.userLoggingIn(currentUser)
+  }
+
   render(){
     // console.log('hello',this.props);
     return(
@@ -42,7 +53,7 @@ class Login extends React.Component {
                 <input placeholder='Password' type='password'/>
               </Form.Field>
             </Form>
-            <Button primary onClick={this.props.userLoggingIn}>Login</Button>
+            <Button primary onClick={this.handleLogin}>Login</Button>
             <br></br>
             -OR-
             <br></br>
@@ -95,8 +106,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    userLoggingIn: () => {
-      dispatch(userLogsIn())
+    userLoggingIn: (currentUser) => {
+      dispatch(userLogsIn(currentUser))
     },
     userSigningUp: () => {
       dispatch(userSigningUp())
