@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote } from '../actions/index';
 import ListItem from '../components/ListItem';
 
 
@@ -11,8 +11,6 @@ class Profile extends React.Component {
     super();
     this.state = {}
   }
-
-
 
 
 render(){
@@ -96,98 +94,67 @@ render(){
                   </Form>
                 ) : (null)}
 
-
-
-
-
-
-
-
-
+            <div id='UserTeams'>
                 {(this.props.displayTeams === true) ? (
-                  <div id='UserTeams'>
+                  <React.Fragment>
                     <div>All User's Teams</div>
-                    <Button primary>Create New Team</Button>
-                  </div>
-                ) : (null)}
-
-
-
-
-
-
-                {/*}<Form>
+                    <Button primary onClick={this.props.userCreatingNewTeam}>Create New Team</Button>
+                  </React.Fragment>
+                    ) : (null)}
+              {(this.props.createTeam === true) ? (
+                <Form>
                   <Form.Group widths='equal'>
                     <Form.Input fluid label='Team Name' placeholder='Team Name' />
                     <Form.Input fluid label='Upload Team Picture' placeholder='Upload Team Picture' />
                   </Form.Group>
                   <Form.Button primary>Save</Form.Button>
                   <Form.Button secondary>Cancel</Form.Button>
-                  <Form.Button color='red'>Delete Team</Form.Button>
-                </Form>*/}
+                </Form>
+              ) : (null)}
+            </div>
 
+                <div id='UserShows'>
+                    {(this.props.displayShows === true) ? (
+                      <React.Fragment>
+                        <div>All User's Shows</div>
+                        <Button primary onClick={this.props.userCreatingNewShow}>Create New Show</Button>
+                      </React.Fragment>
+                        ) : (null)}
+                  {(this.props.createShow === true) ? (
+                    <Form>
+                      <Form.Group widths='equal'>
+                        <Form.Input fluid label='Show Name' placeholder='Show Name' />
+                        <Form.Input fluid label='Upload Show Picture' placeholder='Upload Show Picture' />
+                      </Form.Group>
+                      <Form.Button primary>Save</Form.Button>
+                      <Form.Button secondary>Cancel</Form.Button>
+                    </Form>
+                  ) : (null)}
+                </div>
 
-
-
-
-
-
-
-
-
-                {(this.props.displayShows === true) ? (
-                  <div id='UserShows'>
-                    <div>All User's Shows</div>
-                    <Button primary>Create New Show</Button>
-                  </div>
-                ) : (null)}
-
-
-
-                {/*<Form>
-                  <Form.Group widths='equal'>
-                    <Form.Input fluid label='Show Name' placeholder='Show Name' />
-                    <Form.Input fluid label='Upload Show Picture' placeholder='Upload Show Picture' />
-                  </Form.Group>
-                  <Form.Button primary>Save</Form.Button>
-                  <Form.Button secondary>Cancel</Form.Button>
-                  <Form.Button color='red'>Delete Show</Form.Button>
-                </Form>*/}
-
-
-
-
-
-                {(this.props.displayNotes === true) ? (
-                  <div id='UserTeams'>
-                    <div>All User's Notes</div>
-                    <Button primary>Create New Note</Button>
-                  </div>
-
-                ) : (null)}
-
-
-                {/*<Form>
-                  <Form.Group widths='equal'>
-                    <Form.Input fluid label='Note' placeholder='Note' />
-                  </Form.Group>
-                  <Form.Button primary>Save</Form.Button>
-                  <Form.Button secondary>Cancel</Form.Button>
-                  <Form.Button color='red'>Delete Note</Form.Button>
-                </Form>*/}
-
-
-
-
-
+                <div id='UserNotes'>
+                    {(this.props.displayNotes === true) ? (
+                      <React.Fragment>
+                        <div>All User's Notes</div>
+                        <Button primary onClick={this.props.userCreatingNewNote}>Create New Note</Button>
+                      </React.Fragment>
+                        ) : (null)}
+                  {(this.props.createNote === true) ? (
+                    <Form>
+                      <Form.Group widths='equal'>
+                        <Form.Input fluid label='Note Name' placeholder='Note Name' />
+                        <Form.Input fluid label='Upload Note Picture' placeholder='Upload Note Picture' />
+                      </Form.Group>
+                      <Form.Button primary>Save</Form.Button>
+                      <Form.Button secondary>Cancel</Form.Button>
+                    </Form>
+                  ) : (null)}
+                </div>
 
               </div>
               ) : (null)
             }
           </React.Fragment>
-
-
-
     )
   }
 }
@@ -203,6 +170,9 @@ function mapStateToProps(state) {
     displayTeams: state.displayTeams,
     displayShows: state.displayShows,
     displayNotes: state.displayNotes,
+    createTeam: state.createTeam,
+    createShow: state.createShow,
+    createNote: state.createNote,
   }
 }
 
@@ -229,70 +199,16 @@ function mapDispatchToProps(dispatch) {
     userDisplaysNotes: () => {
       dispatch(displayNotes())
     },
+    userCreatingNewTeam: () => {
+      dispatch(createNewTeam())
+    },
+    userCreatingNewShow: () => {
+      dispatch(createNewShow())
+    },
+    userCreatingNewNote: () => {
+      dispatch(createNewNote())
+    },
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const options = [
-//   { key: 'm', text: 'Male', value: 'male' },
-//   { key: 'f', text: 'Female', value: 'female' },
-// ]
-//
-// class FormExampleSubcomponentControl extends Component {
-//   state = {}
-//
-//   handleChange = (e, { value }) => this.setState({ value })
-//
-//   render() {
-//     const { value } = this.state
-//     return (
-//       <Form>
-//         <Form.Group widths='equal'>
-//           <Form.Input fluid label='First name' placeholder='First name' />
-//           <Form.Input fluid label='Last name' placeholder='Last name' />
-//           <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
-//         </Form.Group>
-//         <Form.Group inline>
-//           <label>Size</label>
-//           <Form.Radio
-//             label='Small'
-//             value='sm'
-//             checked={value === 'sm'}
-//             onChange={this.handleChange}
-//           />
-//           <Form.Radio
-//             label='Medium'
-//             value='md'
-//             checked={value === 'md'}
-//             onChange={this.handleChange}
-//           />
-//           <Form.Radio
-//             label='Large'
-//             value='lg'
-//             checked={value === 'lg'}
-//             onChange={this.handleChange}
-//           />
-//         </Form.Group>
-//         <Form.TextArea label='About' placeholder='Tell us more about you...' />
-//         <Form.Checkbox label='I agree to the Terms and Conditions' />
-//         <Form.Button>Submit</Form.Button>
-//       </Form>
-//     )
-//   }
-// }
-//
-// export default FormExampleSubcomponentControl

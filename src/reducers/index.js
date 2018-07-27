@@ -16,6 +16,9 @@ const initialState = {
   displayTeams: false,
   displayShows: false,
   displayNotes: false,
+  createTeam: false,
+  createShow: false,
+  createNote: false,
 }
 
 // const renderState = {
@@ -64,6 +67,9 @@ export const reducer = (state = initialState, action) => {
         displayTeams: false,
         displayShows: false,
         displayNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "SIGNING_UP":
       return {
@@ -83,6 +89,12 @@ export const reducer = (state = initialState, action) => {
         displayShows: false,
         displayNotes: false,
         editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "SEARCHING":
       return {
@@ -98,6 +110,9 @@ export const reducer = (state = initialState, action) => {
         displayTeams: false,
         displayShows: false,
         displayNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "GET_ALL_USERS":
       return {
@@ -132,6 +147,9 @@ export const reducer = (state = initialState, action) => {
         displayTeams: false,
         displayShows: false,
         displayNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "EDIT_TEAMS":
       return {
@@ -140,6 +158,12 @@ export const reducer = (state = initialState, action) => {
         editingProfile: false,
         editingShows: false,
         editingNotes: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "EDIT_SHOWS":
       return {
@@ -148,6 +172,12 @@ export const reducer = (state = initialState, action) => {
         editingProfile: false,
         editingTeams: false,
         editingNotes: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "EDIT_NOTES":
       return {
@@ -156,6 +186,12 @@ export const reducer = (state = initialState, action) => {
         editingProfile: false,
         editingTeams: false,
         editingShows: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "DISPLAY_TEAMS":
       return {
@@ -164,6 +200,12 @@ export const reducer = (state = initialState, action) => {
         displayTeams: true,
         displayShows: false,
         editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "DISPLAY_SHOWS":
       return {
@@ -172,6 +214,12 @@ export const reducer = (state = initialState, action) => {
         displayTeams: false,
         displayShows: true,
         editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
       }
     case "DISPLAY_NOTES":
       return {
@@ -180,6 +228,54 @@ export const reducer = (state = initialState, action) => {
         displayTeams: false,
         displayShows: false,
         editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
+      }
+    case "CREATE_TEAM":
+      return {
+        ...state,
+        displayTeams: false,
+        createTeam: true,
+        displayNotes: false,
+        displayShows: false,
+        editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createShow: false,
+        createNote: false,
+      }
+    case "CREATE_SHOW":
+      return {
+        ...state,
+        displayShows: false,
+        createTeam: false,
+        displayNotes: false,
+        displayTeams: false,
+        editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createShow: true,
+        createNote: false,
+      }
+    case "CREATE_NOTE":
+      return {
+        ...state,
+        displayNotes: false,
+        createNote: true,
+        displayTeams: false,
+        displayShows: false,
+        editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createTeam: false,
+        createShow: false,
       }
     default:
       return state;

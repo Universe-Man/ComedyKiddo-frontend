@@ -108,6 +108,26 @@ export function displayNotes() {
     type: "DISPLAY_NOTES"
   }
 }
+
+export function createNewTeam() {
+  return {
+    type: "CREATE_TEAM"
+  }
+}
+
+export function createNewShow() {
+  return {
+    type: "CREATE_SHOW"
+  }
+}
+
+export function createNewNote() {
+  return {
+    type: "CREATE_NOTE"
+  }
+}
+
+
 //////////////CRUD STUFF????//////////////
 // (NEED PAYLOADS BELOW!!)
 // export function createUser() {
