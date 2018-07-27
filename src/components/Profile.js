@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes } from '../actions/index';
 import ListItem from '../components/ListItem';
 
 
@@ -66,17 +66,17 @@ render(){
 
 
                 <Container textAlign='left'>
-                  <Button onClick={this.props.userEditingTeams}>Teams</Button>
+                  <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
                   <h3>teams</h3>
                 </Container>
                 <Container textAlign='center'>
-                  <Button onClick={this.props.userEditingShows}>Shows</Button>
+                  <Button onClick={this.props.userDisplaysShows}>Shows</Button>
                   <h3>shows</h3>
                 </Container>
                 <Container textAlign='right'>
                   {(this.props.profileBeingViewed.notes) ? (
                     <React.Fragment>
-                      <Button onClick={this.props.userEditingNotes}>Notes</Button>
+                      <Button onClick={this.props.userDisplaysNotes}>Notes</Button>
                       <h3>notes</h3>
                     </React.Fragment>
                   ) : (null)}
@@ -96,40 +96,90 @@ render(){
                   </Form>
                 ) : (null)}
 
-                {(this.props.editingTeams === true) ? (
-                  <Form>
-                    <Form.Group widths='equal'>
-                      <Form.Input fluid label='Team Name' placeholder='Team Name' />
-                      <Form.Input fluid label='Upload Team Picture' placeholder='Upload Team Picture' />
-                    </Form.Group>
-                    <Form.Button primary>Save</Form.Button>
-                    <Form.Button secondary>Cancel</Form.Button>
-                    <Form.Button color='red'>Delete Team</Form.Button>
-                  </Form>
+
+
+
+
+
+
+
+
+                {(this.props.displayTeams === true) ? (
+                  <div id='UserTeams'>
+                    <div>All User's Teams</div>
+                    <Button primary>Create New Team</Button>
+                  </div>
                 ) : (null)}
 
-                {(this.props.editingShows === true) ? (
-                  <Form>
-                    <Form.Group widths='equal'>
-                      <Form.Input fluid label='Show Name' placeholder='Show Name' />
-                      <Form.Input fluid label='Upload Show Picture' placeholder='Upload Show Picture' />
-                    </Form.Group>
-                    <Form.Button primary>Save</Form.Button>
-                    <Form.Button secondary>Cancel</Form.Button>
-                    <Form.Button color='red'>Delete Show</Form.Button>
-                  </Form>
+
+
+
+
+
+                {/*}<Form>
+                  <Form.Group widths='equal'>
+                    <Form.Input fluid label='Team Name' placeholder='Team Name' />
+                    <Form.Input fluid label='Upload Team Picture' placeholder='Upload Team Picture' />
+                  </Form.Group>
+                  <Form.Button primary>Save</Form.Button>
+                  <Form.Button secondary>Cancel</Form.Button>
+                  <Form.Button color='red'>Delete Team</Form.Button>
+                </Form>*/}
+
+
+
+
+
+
+
+
+
+
+                {(this.props.displayShows === true) ? (
+                  <div id='UserShows'>
+                    <div>All User's Shows</div>
+                    <Button primary>Create New Show</Button>
+                  </div>
                 ) : (null)}
 
-                {(this.props.editingNotes === true) ? (
-                  <Form>
-                    <Form.Group widths='equal'>
-                      <Form.Input fluid label='Note Name' placeholder='Note Name' />
-                    </Form.Group>
-                    <Form.Button primary>Save</Form.Button>
-                    <Form.Button secondary>Cancel</Form.Button>
-                    <Form.Button color='red'>Delete Note</Form.Button>
-                  </Form>
+
+
+                {/*<Form>
+                  <Form.Group widths='equal'>
+                    <Form.Input fluid label='Show Name' placeholder='Show Name' />
+                    <Form.Input fluid label='Upload Show Picture' placeholder='Upload Show Picture' />
+                  </Form.Group>
+                  <Form.Button primary>Save</Form.Button>
+                  <Form.Button secondary>Cancel</Form.Button>
+                  <Form.Button color='red'>Delete Show</Form.Button>
+                </Form>*/}
+
+
+
+
+
+                {(this.props.displayNotes === true) ? (
+                  <div id='UserTeams'>
+                    <div>All User's Notes</div>
+                    <Button primary>Create New Note</Button>
+                  </div>
+
                 ) : (null)}
+
+
+                {/*<Form>
+                  <Form.Group widths='equal'>
+                    <Form.Input fluid label='Note' placeholder='Note' />
+                  </Form.Group>
+                  <Form.Button primary>Save</Form.Button>
+                  <Form.Button secondary>Cancel</Form.Button>
+                  <Form.Button color='red'>Delete Note</Form.Button>
+                </Form>*/}
+
+
+
+
+
 
               </div>
               ) : (null)
@@ -150,6 +200,9 @@ function mapStateToProps(state) {
     editingTeams: state.editingTeams,
     editingShows: state.editingShows,
     editingNotes: state.editingNotes,
+    displayTeams: state.displayTeams,
+    displayShows: state.displayShows,
+    displayNotes: state.displayNotes,
   }
 }
 
@@ -166,6 +219,15 @@ function mapDispatchToProps(dispatch) {
     },
     userEditingNotes: () => {
       dispatch(editNotes())
+    },
+    userDisplaysTeams: () => {
+      dispatch(displayTeams())
+    },
+    userDisplaysShows: () => {
+      dispatch(displayShows())
+    },
+    userDisplaysNotes: () => {
+      dispatch(displayNotes())
     },
   }
 }

@@ -90,6 +90,24 @@ export function editNotes() {
     type: "EDIT_NOTES"
   }
 }
+
+export function displayTeams() {
+  return {
+    type: "DISPLAY_TEAMS"
+  }
+}
+
+export function displayShows() {
+  return {
+    type: "DISPLAY_SHOWS"
+  }
+}
+
+export function displayNotes() {
+  return {
+    type: "DISPLAY_NOTES"
+  }
+}
 //////////////CRUD STUFF????//////////////
 // (NEED PAYLOADS BELOW!!)
 // export function createUser() {

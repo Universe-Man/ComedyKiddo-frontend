@@ -13,6 +13,9 @@ const initialState = {
   editingTeams: false,
   editingShows: false,
   editingNotes: false,
+  displayTeams: false,
+  displayShows: false,
+  displayNotes: false,
 }
 
 // const renderState = {
@@ -58,6 +61,9 @@ export const reducer = (state = initialState, action) => {
         editingTeams: false,
         editingShows: false,
         editingNotes: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
       }
     case "SIGNING_UP":
       return {
@@ -72,6 +78,11 @@ export const reducer = (state = initialState, action) => {
         viewingProfile: true,
         searching: false,
         activeHeaderItem: "profile",
+        profileBeingViewed: state.currentUser,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
+        editingProfile: false,
       }
     case "SEARCHING":
       return {
@@ -84,6 +95,9 @@ export const reducer = (state = initialState, action) => {
         editingTeams: false,
         editingShows: false,
         editingNotes: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
       }
     case "GET_ALL_USERS":
       return {
@@ -115,6 +129,9 @@ export const reducer = (state = initialState, action) => {
         editingTeams: false,
         editingShows: false,
         editingNotes: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
       }
     case "EDIT_TEAMS":
       return {
@@ -139,6 +156,30 @@ export const reducer = (state = initialState, action) => {
         editingProfile: false,
         editingTeams: false,
         editingShows: false,
+      }
+    case "DISPLAY_TEAMS":
+      return {
+        ...state,
+        displayNotes: false,
+        displayTeams: true,
+        displayShows: false,
+        editingProfile: false,
+      }
+    case "DISPLAY_SHOWS":
+      return {
+        ...state,
+        displayNotes: false,
+        displayTeams: false,
+        displayShows: true,
+        editingProfile: false,
+      }
+    case "DISPLAY_NOTES":
+      return {
+        ...state,
+        displayNotes: true,
+        displayTeams: false,
+        displayShows: false,
+        editingProfile: false,
       }
     default:
       return state;
