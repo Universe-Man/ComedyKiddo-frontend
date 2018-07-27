@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes } from '../actions/index';
 import ListItem from '../components/ListItem';
 
 
@@ -45,6 +45,7 @@ render(){
   }
     console.log("the current profile?", this.props.profileBeingViewed);
     console.log("editing profile?", this.props.editingProfile);
+    console.log("CONCENTRATED GOD STATE", this.props);
     return(
 
           <React.Fragment>
@@ -62,17 +63,27 @@ render(){
                 <Container textAlign='left'>
                   <h3>{this.props.profileBeingViewed.email}</h3>
                 </Container>
+
+
                 <Container textAlign='left'>
+                  <Button onClick={this.props.userEditingTeams}>Teams</Button>
                   <h3>teams</h3>
                 </Container>
                 <Container textAlign='center'>
+                  <Button onClick={this.props.userEditingShows}>Shows</Button>
                   <h3>shows</h3>
                 </Container>
                 <Container textAlign='right'>
                   {(this.props.profileBeingViewed.notes) ? (
-                    <h3>notes</h3>
+                    <React.Fragment>
+                      <Button onClick={this.props.userEditingNotes}>Notes</Button>
+                      <h3>notes</h3>
+                    </React.Fragment>
                   ) : (null)}
                 </Container>
+
+
+
                 {(this.props.editingProfile === true) ? (
 
                   <Form>
@@ -104,6 +115,9 @@ function mapStateToProps(state) {
     viewingProfile: state.viewingProfile,
     profileBeingViewed: state.profileBeingViewed,
     editingProfile: state.editingProfile,
+    editingTeams: state.editingTeams,
+    editingShows: state.editingShows,
+    editingNotes: state.editingNotes,
   }
 }
 
@@ -111,7 +125,16 @@ function mapDispatchToProps(dispatch) {
   return {
     userEditingProfile: () => {
       dispatch(editProfile())
-    }
+    },
+    userEditingTeams: () => {
+      dispatch(editTeams())
+    },
+    userEditingShows: () => {
+      dispatch(editShows())
+    },
+    userEditingNotes: () => {
+      dispatch(editNotes())
+    },
   }
 }
 

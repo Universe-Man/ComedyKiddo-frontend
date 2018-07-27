@@ -10,6 +10,9 @@ const initialState = {
   searching: false,
   activeHeaderItem: "profile",
   editingProfile: false,
+  editingTeams: false,
+  editingShows: false,
+  editingNotes: false,
 }
 
 // const renderState = {
@@ -29,6 +32,7 @@ export const reducer = (state = initialState, action) => {
             signingUp: false,
             viewingProfile: true,
             activeHeaderItem: "profile",
+            profileBeingViewed: state.currentUser
           }
         } else {
           return {
@@ -37,6 +41,7 @@ export const reducer = (state = initialState, action) => {
             loggedIn: true,
             viewingProfile: true,
             activeHeaderItem: "profile",
+            profileBeingViewed: state.currentUser
           }
         }
     case "LOGGED_OUT":
@@ -47,6 +52,8 @@ export const reducer = (state = initialState, action) => {
         viewingProfile: false,
         searching: false,
         activeHeaderItem: "profile",
+        profileBeingViewed: {},
+        currentUser: {},
       }
     case "SIGNING_UP":
       return {
@@ -97,6 +104,33 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         editingProfile: true,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+      }
+    case "EDIT_TEAMS":
+      return {
+        ...state,
+        editingTeams: true,
+        editingProfile: false,
+        editingShows: false,
+        editingNotes: false,
+      }
+    case "EDIT_SHOWS":
+      return {
+        ...state,
+        editingShows: true,
+        editingProfile: false,
+        editingTeams: false,
+        editingNotes: false,
+      }
+    case "EDIT_NOTES":
+      return {
+        ...state,
+        editingNotes: true,
+        editingProfile: false,
+        editingTeams: false,
+        editingShows: false,
       }
     default:
       return state;

@@ -72,6 +72,24 @@ export function editProfile() {
     type: "EDIT_PROFILE"
   }
 }
+
+export function editTeams() {
+  return {
+    type: "EDIT_TEAMS"
+  }
+}
+
+export function editShows() {
+  return {
+    type: "EDIT_SHOWS"
+  }
+}
+
+export function editNotes() {
+  return {
+    type: "EDIT_NOTES"
+  }
+}
 //////////////CRUD STUFF????//////////////
 // (NEED PAYLOADS BELOW!!)
 // export function createUser() {
