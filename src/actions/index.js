@@ -28,6 +28,12 @@ export function userSigningUp() {
   }
 }
 
+export function userLoginError() {
+  return {
+    type: "LOGIN_ERROR"
+  }
+}
+
 export function userViewProfile() {
   return {
     type: "VIEWING_PROFILE"

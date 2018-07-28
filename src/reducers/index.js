@@ -6,6 +6,7 @@ const initialState = {
   allShows: [],
   loggedIn: false,
   signingUp: false,
+  loginError: false,
   viewingProfile: false,
   searching: false,
   activeHeaderItem: "profile",
@@ -47,6 +48,7 @@ export const reducer = (state = initialState, action) => {
             //...renderState,
             loggedIn: true,
             viewingProfile: true,
+            loginError: false,
             activeHeaderItem: "profile",
             currentUser: action.payload,
             profileBeingViewed: action.payload
@@ -58,6 +60,7 @@ export const reducer = (state = initialState, action) => {
         //...renderState,
         loggedIn: false,
         viewingProfile: false,
+        loginError: false,
         searching: false,
         activeHeaderItem: "profile",
         profileBeingViewed: {},
@@ -78,6 +81,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         //...renderState,
         signingUp: true,
+      }
+    case "LOGIN_ERROR":
+      return {
+        ...state,
+        loginError: true,
       }
     case "VIEWING_PROFILE":
       return {

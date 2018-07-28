@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Message } from 'semantic-ui-react'
 import '../assets/App.css';
 import { connect } from 'react-redux';
-import { userLogsIn, userSigningUp } from '../actions/index';
+import { userLogsIn, userSigningUp, userLoginError } from '../actions/index';
 
 class Login extends React.Component {
   constructor(){
@@ -43,10 +43,17 @@ class Login extends React.Component {
         return user.email === currentUserLoginInfo.email && user.password === currentUserLoginInfo.password
       })
     if (currentUser === undefined) {
-      currentUser = {}
-    }
+      currentUser = {};
+      this.props.userLoggingInError()
+    } else {
     console.log(currentUser)
     this.props.userLoggingIn(currentUser)
+    currentUser = {};
+    this.setState({
+      loginEmail: "",
+      loginPassword: "",
+    })
+    }
   }
 
   getLoginEmail = (event) => {
@@ -65,7 +72,7 @@ class Login extends React.Component {
     // console.log('hello',this.props);
     return(
       <React.Fragment>
-        {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false) ? (
+        {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false && this.props.loginError === false) ? (
           <div className="opening-login-page">
             <h1>Welcome to Comedy Kiddo!</h1>
             <Form>
@@ -86,6 +93,33 @@ class Login extends React.Component {
           </div>
           ) : (null)
         }
+
+        {(this.props.loginError === true) ? (
+          <div className="opening-login-page">
+            <h1>Welcome to Comedy Kiddo!</h1>
+            <Form error>
+              <Message
+                error
+                header='Account Not Recognized'
+                content='Please make sure your email and/or password are correct.'
+                />
+              <Form.Field>
+                <label>Email</label>
+                <input onChange={this.getLoginEmail} placeholder='Email' value={this.state.loginEmail} />
+              </Form.Field>
+              <Form.Field>
+                <label>Password</label>
+                <input onChange={this.getLoginPassword} placeholder='Password' type='password' value={this.state.loginPassword}/>
+              </Form.Field>
+            </Form>
+            <Button primary onClick={this.handleLogin}>Login</Button>
+            <br></br>
+            -OR-
+            <br></br>
+            <Button secondary onClick={this.props.userSigningUp}>Sign Up</Button>
+          </div>
+        ) : (null)}
+
         {(this.props.signingUp === true) ? (
           <div className="opening-login-page">
             <Form onSubmit={this.props.userLoggingIn}>
@@ -124,6 +158,7 @@ function mapStateToProps(state) {
   return {
     loggedIn: state.loggedIn,
     signingUp: state.signingUp,
+    loginError: state.loginError,
     viewingProfile: state.viewingProfile,
     searching: state.searching,
     allUsers: state.allUsers,
@@ -137,7 +172,9 @@ function mapDispatchToProps(dispatch) {
     },
     userSigningUp: () => {
       dispatch(userSigningUp())
-
+    },
+    userLoggingInError: () => {
+      dispatch(userLoginError())
     }
   }
 }
