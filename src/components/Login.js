@@ -33,15 +33,18 @@ class Login extends React.Component {
 
     // to fake:
     // createToken => ;dfs;lafj;adfjs;fj
-    const currentUserLoginInfo = {
+    let currentUserLoginInfo = {
       email: this.state.loginEmail,
       password: this.state.loginPassword
     }
     console.log(currentUserLoginInfo);
-    const currentUser =
+    let currentUser =
       this.props.allUsers.find(user => {
         return user.email === currentUserLoginInfo.email && user.password === currentUserLoginInfo.password
       })
+    if (currentUser === undefined) {
+      currentUser = {}
+    }
     console.log(currentUser)
     this.props.userLoggingIn(currentUser)
   }
