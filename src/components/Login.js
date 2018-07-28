@@ -2,7 +2,9 @@ import React from 'react';
 import { Button, Checkbox, Form, Message } from 'semantic-ui-react'
 import '../assets/App.css';
 import { connect } from 'react-redux';
-import { userLogsIn, userSigningUp, userLoginError } from '../actions/index';
+import { userLogsIn, userSigningUp, userLoginError, userSignUpError, createNewUser } from '../actions/index';
+import { userURL, teamURL, showURL } from '../containers/GodContainer';
+
 
 class Login extends React.Component {
   constructor(){
@@ -10,6 +12,10 @@ class Login extends React.Component {
     this.state = {
       loginEmail: "",
       loginPassword: "",
+      coachChecked: false,
+      signUpName: "",
+      signUpEmail: "",
+      signUpPassword: "",
     }
   }
 
@@ -56,6 +62,35 @@ class Login extends React.Component {
     }
   }
 
+  handleSignUp = () => {
+    let currentUserSignUpInfo = {
+      name: this.state.signUpName,
+      email: this.state.signUpEmail,
+      password: this.state.signUpPassword,
+      coach: this.state.coachChecked,
+      img_src: "",
+      source: "user"
+    }
+    let existingUser =
+      this.props.allUsers.find(user => {
+        return user.email === currentUserSignUpInfo.email
+      })
+    if (existingUser !== undefined) {
+      this.props.userSigningUpError()
+    } else {
+      fetch(userURL, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(currentUserSignUpInfo)
+        .then(res => res.json())
+        .then(json => this.props.userCreatingNewAccount(json))
+      })
+    }
+  }
+
   getLoginEmail = (event) => {
     this.setState({
       loginEmail: event.target.value
@@ -66,6 +101,30 @@ class Login extends React.Component {
     this.setState({
       loginPassword: event.target.value
     }, () => console.log("LOGIN-PASSWORD", this.state.loginPassword))
+  }
+
+  getSignUpName = (event) => {
+    this.setState({
+      signUpName: event.target.value,
+    })
+  }
+
+  getSignUpEmail = (event) => {
+    this.setState({
+      signUpEmail: event.target.value
+    })
+  }
+
+  getSignUpPassword = (event) => {
+    this.setState({
+      signUpPassword: event.target.value
+    })
+  }
+
+  isSignUpCoach = () => {
+    this.setState({
+      coachChecked: !this.state.coachChecked
+    }, () => {console.log("coachChecked?", this.state.coachChecked)})
   }
 
   render(){
@@ -120,29 +179,67 @@ class Login extends React.Component {
           </div>
         ) : (null)}
 
-        {(this.props.signingUp === true) ? (
+        {(this.props.signingUp === true && this.props.signUpError === false) ? (
           <div className="opening-login-page">
-            <Form onSubmit={this.props.userLoggingIn}>
+            <h1>Welcome to Comedy Kiddo!</h1>
+            <Form onSubmit={this.handleSignUp}>
               <Form.Field>
                 <label>Full Name</label>
-                <input placeholder='Full Name' />
+                <input placeholder='Full Name' onChange={this.getSignUpName} autoFocus="autofocus" />
               </Form.Field>
               <Form.Field>
                 <label>Email</label>
-                <input placeholder='Email' type='email' />
+                <input placeholder='Email' onChange={this.getSignUpEmail} type='email' />
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
-                <input placeholder='Password' type='password'/>
+                <input placeholder='Password' onChange={this.getSignUpPassword} type='password'/>
               </Form.Field>
               <Form.Field>
-                <Checkbox label='Are You A Coach?' />
+                <Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.isSignUpCoach}/>
               </Form.Field>
               <Button primary type='submit'>Submit</Button>
             </Form>
           </div>
           ) : (null)
         }
+
+
+/////////////////
+        {(this.props.signUpError === true) ? (
+
+          <div className="opening-login-page">
+            <h1>Welcome to Comedy Kiddo!</h1>
+            <Form error onSubmit={this.handleSignUp}>
+              <Message
+                error
+                header='Account Already Exists'
+                content='Please login to this existing account, or select a new email address.'
+                />
+              <Form.Field>
+                <label>Full Name</label>
+                <input placeholder='Full Name' onChange={this.getSignUpName} autoFocus="autofocus" value={this.state.signUpName} />
+              </Form.Field>
+              <Form.Field>
+                <label>Email</label>
+                <input placeholder='Email' onChange={this.getSignUpEmail} value={this.state.signUpEmail} type='email' />
+              </Form.Field>
+              <Form.Field>
+                <label>Password</label>
+                <input placeholder='Password' onChange={this.getSignUpPassword} value={this.state.signUpPassword} type='password'/>
+              </Form.Field>
+              <Form.Field>
+                <Checkbox label='Are You A Coach?' checked={this.state.coachChecked}  onClick={this.isSignUpCoach}/>
+              </Form.Field>
+              <Button primary type='submit'>Submit</Button>
+            </Form>
+          </div>
+
+        ) : (null)}
+
+
+        /////////////
+
       </React.Fragment>
       // ANOTHER WAY TO WRITE THE BUTTONS
       // <div>
@@ -159,6 +256,7 @@ function mapStateToProps(state) {
     loggedIn: state.loggedIn,
     signingUp: state.signingUp,
     loginError: state.loginError,
+    signUpError: state.signUpError,
     viewingProfile: state.viewingProfile,
     searching: state.searching,
     allUsers: state.allUsers,
@@ -175,6 +273,12 @@ function mapDispatchToProps(dispatch) {
     },
     userLoggingInError: () => {
       dispatch(userLoginError())
+    },
+    userSigningUpError: () => {
+      dispatch(userSignUpError())
+    },
+    userCreatingNewAccount: (newUser) => {
+      dispatch(createNewUser(newUser))
     }
   }
 }

@@ -34,6 +34,12 @@ export function userLoginError() {
   }
 }
 
+export function userSignUpError() {
+  return {
+    type: "SIGNUP_ERROR"
+  }
+}
+
 export function userViewProfile() {
   return {
     type: "VIEWING_PROFILE"
@@ -116,6 +122,13 @@ export function displayNotes() {
   }
 }
 
+export function createNewUser(newUser) {
+  return {
+    type: "CREATE_USER",
+    payload: newUser
+  }
+}
+
 export function createNewTeam() {
   return {
     type: "CREATE_TEAM"
@@ -137,12 +150,6 @@ export function createNewNote() {
 
 //////////////CRUD STUFF????//////////////
 // (NEED PAYLOADS BELOW!!)
-// export function createUser() {
-//   return {
-//     type: "CREATE_USER",
-//     //payload: {}
-//   }
-// }
 //
 // export function editUser() {
 //   return {
