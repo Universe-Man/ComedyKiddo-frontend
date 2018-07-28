@@ -5,9 +5,10 @@
 //   }
 // }
 
-export function userLogsIn() {
+export function userLogsIn(currentUser) {
   return {
     type: "LOGGED_IN",
+    payload: currentUser
     // payload: {
     //   loggedIn: true
     // } BECAUSE THE CHANGE IS IN THE REDUCER ALREADY, ONLY NEED PAYLOAD WHEN INTRODUCING NEW INFO

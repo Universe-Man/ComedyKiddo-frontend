@@ -38,7 +38,8 @@ export const reducer = (state = initialState, action) => {
             signingUp: false,
             viewingProfile: true,
             activeHeaderItem: "profile",
-            profileBeingViewed: state.currentUser
+            currentUser: action.payload,
+            profileBeingViewed: action.payload
           }
         } else {
           return {
@@ -47,7 +48,8 @@ export const reducer = (state = initialState, action) => {
             loggedIn: true,
             viewingProfile: true,
             activeHeaderItem: "profile",
-            profileBeingViewed: state.currentUser
+            currentUser: action.payload,
+            profileBeingViewed: action.payload
           }
         }
     case "LOGGED_OUT":

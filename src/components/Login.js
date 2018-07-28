@@ -7,9 +7,10 @@ import { userLogsIn, userSigningUp } from '../actions/index';
 class Login extends React.Component {
   constructor(){
     super();
-    // this.state = {
-    //   signingUp: false,
-    // }
+    this.state = {
+      loginEmail: "",
+      loginPassword: "",
+    }
   }
 
   // renderLoginForm = () => {
@@ -32,8 +33,29 @@ class Login extends React.Component {
 
     // to fake:
     // createToken => ;dfs;lafj;adfjs;fj
-    const currentUser = { username: "" }
+    const currentUserLoginInfo = {
+      email: this.state.loginEmail,
+      password: this.state.loginPassword
+    }
+    console.log(currentUserLoginInfo);
+    const currentUser =
+      this.props.allUsers.find(user => {
+        return user.email === currentUserLoginInfo.email && user.password === currentUserLoginInfo.password
+      })
+    console.log(currentUser)
     this.props.userLoggingIn(currentUser)
+  }
+
+  getLoginEmail = (event) => {
+    this.setState({
+      loginEmail: event.target.value
+    }, () => console.log("LOGIN-EMAIL", this.state.loginEmail))
+  }
+
+  getLoginPassword = (event) => {
+    this.setState({
+      loginPassword: event.target.value
+    }, () => console.log("LOGIN-PASSWORD", this.state.loginPassword))
   }
 
   render(){
@@ -46,11 +68,11 @@ class Login extends React.Component {
             <Form>
               <Form.Field>
                 <label>Email</label>
-                <input placeholder='Email' />
+                <input onChange={this.getLoginEmail} placeholder='Email' />
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
-                <input placeholder='Password' type='password'/>
+                <input onChange={this.getLoginPassword} placeholder='Password' type='password'/>
               </Form.Field>
             </Form>
             <Button primary onClick={this.handleLogin}>Login</Button>
@@ -101,6 +123,7 @@ function mapStateToProps(state) {
     signingUp: state.signingUp,
     viewingProfile: state.viewingProfile,
     searching: state.searching,
+    allUsers: state.allUsers,
   }
 }
 
