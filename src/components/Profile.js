@@ -12,6 +12,9 @@ class Profile extends React.Component {
     this.state = {}
   }
 
+  cancelEditProfile = () => {
+
+  }
 
 render(){
   let teams
@@ -88,8 +91,9 @@ render(){
                       <Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' />
                       <Form.Checkbox label='Are You A Coach?' />
                     </Form.Group>
+                    // MAYBE ONCLICK WILL WORK AND NOT NEEDED ONSUBMIT (CUZ HOW WOULD i SEAPARTE THEM?)
                     <Form.Button primary>Save</Form.Button>
-                    <Form.Button secondary>Cancel</Form.Button>
+                    <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
                     <Form.Button color='red'>Delete Profile</Form.Button>
                   </Form>
                 ) : (null)}
@@ -180,6 +184,9 @@ function mapDispatchToProps(dispatch) {
   return {
     userEditingProfile: () => {
       dispatch(editProfile())
+    },
+    userCancelsEditProfile: () => {
+      dispatch(cancelEditProfile())
     },
     userEditingTeams: () => {
       dispatch(editTeams())

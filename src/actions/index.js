@@ -86,6 +86,12 @@ export function editProfile() {
   }
 }
 
+export function cancelEditProfile() {
+  return {
+    type: "CANCEL_EDIT_PROFILE"
+  }
+}
+
 export function editTeams() {
   return {
     type: "EDIT_TEAMS"

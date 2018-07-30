@@ -169,6 +169,11 @@ export const reducer = (state = initialState, action) => {
         createShow: false,
         createNote: false,
       }
+    case "CANCEL_EDIT_PROFILE":
+      return {
+        ...state,
+        editingProfile: false,
+      }
     case "EDIT_TEAMS":
       return {
         ...state,
@@ -257,7 +262,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
-        profileBeingViewed: action.payload,        
+        profileBeingViewed: action.payload,
       }
 
     case "CREATE_TEAM":
