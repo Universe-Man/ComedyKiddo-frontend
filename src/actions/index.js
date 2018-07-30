@@ -141,6 +141,12 @@ export function createNewTeam() {
   }
 }
 
+export function cancelCreateNewTeam() {
+  return {
+    type: "CANCEL_CREATE_TEAM"
+  }
+}
+
 export function createNewShow() {
   return {
     type: "CREATE_SHOW"
