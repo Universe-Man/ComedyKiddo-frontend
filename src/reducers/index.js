@@ -298,6 +298,11 @@ export const reducer = (state = initialState, action) => {
         createShow: true,
         createNote: false,
       }
+    case "CANCEL_CREATE_SHOW":
+      return {
+        ...state,
+        createShow: false,
+      }
     case "CREATE_NOTE":
       return {
         ...state,

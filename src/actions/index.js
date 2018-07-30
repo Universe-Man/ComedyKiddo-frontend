@@ -153,6 +153,12 @@ export function createNewShow() {
   }
 }
 
+export function cancelCreateNewShow() {
+  return {
+    type: "CANCEL_CREATE_SHOW"
+  }
+}
+
 export function createNewNote() {
   return {
     type: "CREATE_NOTE"
