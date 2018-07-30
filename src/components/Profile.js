@@ -1,8 +1,8 @@
 import React from 'react';
 import '../assets/App.css';
-import { Container, Divider, Button, Form, Message } from 'semantic-ui-react'
+import { Container, Divider, Button, Form, Message, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, userLogsOut } from '../actions/index';
 import ListItem from '../components/ListItem';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
@@ -15,6 +15,7 @@ class Profile extends React.Component {
       editProfileEmail: "",
       editProfilePic: "",
       coachChecked: false,
+      deleteWarningOpen: false,
     }
   }
 
@@ -76,6 +77,20 @@ class Profile extends React.Component {
       }
   }
 
+  warnDeleteProfile = () => {
+    this.setState({
+      deleteWarningOpen: !this.state.deleteWarningOpen
+    })
+  }
+
+  finalAnswerDeleteProfile = () => {
+    console.log("for jeff this should be 5", this.props.currentUser.id);
+    fetch(`${userURL}/${this.props.currentUser.id}`, {
+      method: "DELETE"
+    })
+    this.warnDeleteProfile()
+    this.props.userLoggingOut()
+  }
 
 
 
@@ -103,6 +118,7 @@ class Profile extends React.Component {
       coachChecked: !this.state.coachChecked
     })
   }
+
 
 render(){
   console.log('STATE OF PROFILE', this.state);
@@ -183,7 +199,7 @@ render(){
                     </Form.Group>
                     <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
                     <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
-                    <Form.Button color='red'>Delete Profile</Form.Button>
+                    <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
                   </Form>
                 ) : (null)}
 /////////
@@ -204,9 +220,39 @@ render(){
                     </Form.Group>
                     <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
                     <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
-                    <Form.Button color='red'>Delete Profile</Form.Button>
+                    <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
                   </Form>
                 ) : (null)}
+
+
+
+
+                  <Modal
+                    open={this.state.deleteWarningOpen}
+                  >
+                    <Modal.Header>Delete Your Account</Modal.Header>
+                    <Modal.Content>
+                      <p>Are you sure you want to delete your account</p>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button negative onClick={this.warnDeleteProfile}>
+                        No
+                      </Button>
+                      <Button
+                        positive
+                        labelPosition='right'
+                        icon='checkmark'
+                        content='Yes'
+                        onClick={this.finalAnswerDeleteProfile}
+                      />
+                    </Modal.Actions>
+                  </Modal>
+
+
+
+
+
+
 /////////
 
             <div id='UserTeams'>
@@ -291,6 +337,7 @@ function mapStateToProps(state) {
     createShow: state.createShow,
     createNote: state.createNote,
     allUsers: state.allUsers,
+    deleteProfileWarning: state.deleteProfileWarning
   }
 }
 
@@ -352,6 +399,9 @@ function mapDispatchToProps(dispatch) {
     },
     gettingAllTheShows: (shows) => {
       dispatch(getAllShows(shows))
+    },
+    userLoggingOut: () => {
+      dispatch(userLogsOut())
     },
   }
 }
