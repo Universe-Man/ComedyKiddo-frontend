@@ -155,6 +155,13 @@ export function cancelCreateNewUser() {
   }
 }
 
+export function logOutFromDelete(newSetOfUsers) {
+  return {
+    type: "LOGOUT_FROM_DELETE",
+    payload: newSetOfUsers
+  }
+}
+
 export function createNewTeam() {
   return {
     type: "CREATE_TEAM"

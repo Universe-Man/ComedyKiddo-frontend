@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form, Message, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, userLogsOut } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete } from '../actions/index';
 import ListItem from '../components/ListItem';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
@@ -94,7 +94,7 @@ class Profile extends React.Component {
       method: "DELETE"
     })
     this.warnDeleteProfile()
-    this.props.userLoggingOut()
+    this.props.userLoggingOutFromDelete(tempAllUsers)
   }
 
 
@@ -405,8 +405,8 @@ function mapDispatchToProps(dispatch) {
     gettingAllTheShows: (shows) => {
       dispatch(getAllShows(shows))
     },
-    userLoggingOut: () => {
-      dispatch(userLogsOut())
+    userLoggingOutFromDelete: (newSetOfUsers) => {
+      dispatch(logOutFromDelete(newSetOfUsers))
     },
   }
 }

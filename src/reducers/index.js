@@ -192,6 +192,32 @@ export const reducer = (state = initialState, action) => {
         ...state,
         editingProfileError: true,
       }
+    case "LOGOUT_FROM_DELETE":
+      return {
+        ...state,
+        ...state,
+        //...renderState,
+        loggedIn: false,
+        viewingProfile: false,
+        loginError: false,
+        signUpError: false,
+        searching: false,
+        activeHeaderItem: "profile",
+        profileBeingViewed: {},
+        currentUser: {},
+        editingProfile: false,
+        editingProfileError: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
+        allUsers: action.payload
+      }
     case "EDIT_TEAMS":
       return {
         ...state,
