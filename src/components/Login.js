@@ -85,9 +85,11 @@ class Login extends React.Component {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(currentUserSignUpInfo)
-        .then(res => res.json())
-        .then(json => this.props.userCreatingNewAccount(json))
       })
+
+      
+      .then(res => res.json())
+      .then(json => this.props.userCreatingNewAccount(json))
     }
   }
 
