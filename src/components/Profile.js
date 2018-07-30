@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote } from '../actions/index';
 import ListItem from '../components/ListItem';
 
 
@@ -150,7 +150,7 @@ render(){
                         <Form.Input fluid label='Upload Note Picture' placeholder='Upload Note Picture' />
                       </Form.Group>
                       <Form.Button primary>Save</Form.Button>
-                      <Form.Button secondary>Cancel</Form.Button>
+                      <Form.Button secondary onClick={this.props.userCancelsCreatingNewNote} >Cancel</Form.Button>
                     </Form>
                   ) : (null)}
                 </div>
@@ -220,6 +220,9 @@ function mapDispatchToProps(dispatch) {
     },
     userCreatingNewNote: () => {
       dispatch(createNewNote())
+    },
+    userCancelsCreatingNewNote: () => {
+      dispatch(cancelCreateNewNote())
     },
   }
 }

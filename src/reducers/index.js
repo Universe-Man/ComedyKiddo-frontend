@@ -328,6 +328,11 @@ export const reducer = (state = initialState, action) => {
         createTeam: false,
         createShow: false,
       }
+    case "CANCEL_CREATE_NOTE":
+      return {
+        ...state,
+        createNote: false,
+      }
     default:
       return state;
   }

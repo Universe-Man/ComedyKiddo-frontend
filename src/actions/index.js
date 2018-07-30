@@ -171,6 +171,12 @@ export function createNewNote() {
   }
 }
 
+export function cancelCreateNewNote() {
+  return {
+    type: "CANCEL_CREATE_NOTE"
+  }
+}
+
 
 //////////////CRUD STUFF????//////////////
 // (NEED PAYLOADS BELOW!!)
