@@ -12,6 +12,7 @@ const initialState = {
   searching: false,
   activeHeaderItem: "profile",
   editingProfile: false,
+  editingProfileError: false,
   editingTeams: false,
   editingShows: false,
   editingNotes: false,
@@ -69,6 +70,7 @@ export const reducer = (state = initialState, action) => {
         profileBeingViewed: {},
         currentUser: {},
         editingProfile: false,
+        editingProfileError: false,
         editingTeams: false,
         editingShows: false,
         editingNotes: false,
@@ -169,10 +171,24 @@ export const reducer = (state = initialState, action) => {
         createShow: false,
         createNote: false,
       }
+    case "COMPLETE_EDIT_PROFILE":
+      return {
+        ...state,
+        editingProfile: false,
+        currentUser: action.payload[0],
+        profileBeingViewed: action.payload[0],
+        allUsers: action.payload[1]
+      }
     case "CANCEL_EDIT_PROFILE":
       return {
         ...state,
         editingProfile: false,
+        editingProfileError: false,
+      }
+    case "EDIT_PROFILE_ERROR":
+      return {
+        ...state,
+        editingProfileError: true,
       }
     case "EDIT_TEAMS":
       return {

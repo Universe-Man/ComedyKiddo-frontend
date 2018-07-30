@@ -46,30 +46,30 @@ class Searcher extends React.Component {
       filteredShows: filteredShows,
     }, () => {this.filterByCategory()})
 
-    console.log("THIS IS WHERE WE'D DO CATEGORIES!");
+    // console.log("THIS IS WHERE WE'D DO CATEGORIES!");
   }
 // NEED TO ADD WHETHER COACH OR LOOKING FOR CERTAIN THINGS, ETC. FILTER!!
   filterByCategory = () => {
     let currentData = [];
     let allData = [...this.state.filteredUsers, ...this.state.filteredTeams, ...this.state.filteredShows]
-    console.log("ALLDATA", allData);
+    // console.log("ALLDATA", allData);
     if (this.state.searchCategory === "just-browsing" || this.state.searchCategory === "") {
-        console.log("jb");
+        // console.log("jb");
         currentData = allData
     } else if (this.state.searchCategory === "player-for-team") {
-        console.log("pft");
+        // console.log("pft");
         currentData = this.state.filteredUsers
     } else if (this.state.searchCategory === "team-for-player") {
-        console.log("tfp");
+        // console.log("tfp");
         currentData = this.state.filteredTeams
     } else if (this.state.searchCategory === "team-for-show") {
-        console.log("tfs");
+        // console.log("tfs");
         currentData = this.state.filteredTeams
     } else if (this.state.searchCategory === "show-for-team") {
-        console.log("sft");
+        // console.log("sft");
         currentData = this.state.filteredShows
     } else if (this.state.searchCategory === "coach") {
-        console.log('coach');
+        // console.log('coach');
         currentData = this.state.filteredUsers
     }
 
@@ -81,11 +81,11 @@ class Searcher extends React.Component {
     // let currentData = this.props.filteredUsers.map(user => {
     //   return ( <ListItem user={user} id={user.id} key={user.id}/> )
     //  })
-    console.log("currentData", currentData);
-    console.log("this.state.filteredUsers", this.state.filteredUsers);
-    console.log("allData", allData);
+    // console.log("currentData", currentData);
+    // console.log("this.state.filteredUsers", this.state.filteredUsers);
+    // console.log("allData", allData);
     this.setState({ filteredData: currentData })
-    console.log("THIS IS WHERE WE'D DO CATEGORIES PART 2!");
+    // console.log("THIS IS WHERE WE'D DO CATEGORIES PART 2!");
 
   }
 
@@ -93,7 +93,7 @@ class Searcher extends React.Component {
 
 
   render(){
-    console.log("STATE", this.state);
+    // console.log("STATE", this.state);
     return(
       <React.Fragment>
         {(this.props.searching === true) ? (

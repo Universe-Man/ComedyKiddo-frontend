@@ -86,9 +86,22 @@ export function editProfile() {
   }
 }
 
+export function completeEditProfile(editedUser, tempAllUsers) {
+  return {
+    type: "COMPLETE_EDIT_PROFILE",
+    payload: [editedUser, tempAllUsers]
+  }
+}
+
 export function cancelEditProfile() {
   return {
     type: "CANCEL_EDIT_PROFILE"
+  }
+}
+
+export function editProfileError() {
+  return {
+    type: "EDIT_PROFILE_ERROR"
   }
 }
 
@@ -134,6 +147,7 @@ export function createNewUser(newUser) {
     payload: newUser
   }
 }
+
 
 export function cancelCreateNewUser() {
   return {

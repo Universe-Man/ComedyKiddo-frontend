@@ -16,6 +16,7 @@ class GodContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log('reloading');
     fetch(userURL)
       .then(res => res.json())
       .then(json => this.props.gettingAllTheUsers(json))
