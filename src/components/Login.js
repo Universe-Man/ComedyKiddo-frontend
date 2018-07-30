@@ -68,6 +68,9 @@ class Login extends React.Component {
       email: this.state.signUpEmail,
       password: this.state.signUpPassword,
       coach: this.state.coachChecked,
+      teams: [],
+      shows: [],
+      notes: [],
       img_src: "",
       source: "user"
     }

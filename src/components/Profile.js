@@ -162,6 +162,8 @@ render(){
           <React.Fragment>
             {(this.props.viewingProfile === true) ? (
               <div id='Profile'>
+
+
                 <Container textAlign='left'>
                   <h1>{this.props.profileBeingViewed.name}</h1>
                 </Container>
@@ -176,6 +178,7 @@ render(){
                 </Container>
 
 
+
                 <Container textAlign='left'>
                   <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
                   <h3>teams</h3>
@@ -184,14 +187,19 @@ render(){
                   <Button onClick={this.props.userDisplaysShows}>Shows</Button>
                   <h3>shows</h3>
                 </Container>
-                <Container textAlign='right'>
-                  {(this.props.profileBeingViewed.notes) ? (
-                    <React.Fragment>
-                      <Button onClick={this.props.userDisplaysNotes}>Notes</Button>
-                      <h3>notes</h3>
-                    </React.Fragment>
-                  ) : (null)}
-                </Container>
+
+  {/*}  // **************************************************
+    // TEMPORARILY CUTTING NOTES FROM PROJECT AS ONLY USERS HAVE THEM AND THEY ARE SHARED IN THE SAME PROFILE FOR NOW!!
+    // **************************************************
+
+                // <Container textAlign='right'>
+                //   {(this.props.profileBeingViewed.notes) ? (
+                //     <React.Fragment>
+                //       <Button onClick={this.props.userDisplaysNotes}>Notes</Button>
+                //       <h3>notes</h3>
+                //     </React.Fragment>
+                //   ) : (null)}
+                // </Container> */}
 
 
                 {(this.props.editingProfile === true && this.props.editingProfileError === false) ? (
@@ -207,7 +215,7 @@ render(){
                     <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
                   </Form>
                 ) : (null)}
-/////////
+
 
 
                 {(this.props.editingProfileError === true) ? (
@@ -258,7 +266,6 @@ render(){
 
 
 
-/////////
 
             <div id='UserTeams'>
                 {(this.props.displayTeams === true) ? (
@@ -298,24 +305,28 @@ render(){
                   ) : (null)}
                 </div>
 
-                <div id='UserNotes'>
-                    {(this.props.displayNotes === true) ? (
-                      <React.Fragment>
-                        <div>All User's Notes</div>
-                        <Button primary onClick={this.props.userCreatingNewNote}>Create New Note</Button>
-                      </React.Fragment>
-                        ) : (null)}
-                  {(this.props.createNote === true) ? (
-                    <Form>
-                      <Form.Group widths='equal'>
-                        <Form.Input fluid label='Note Name' placeholder='Note Name' />
-                        <Form.Input fluid label='Upload Note Picture' placeholder='Upload Note Picture' />
-                      </Form.Group>
-                      <Form.Button primary>Save</Form.Button>
-                      <Form.Button secondary onClick={this.props.userCancelsCreatingNewNote} >Cancel</Form.Button>
-                    </Form>
-                  ) : (null)}
-                </div>
+            {/*    // **************************************************
+                // TEMPORARILY CUTTING NOTES FROM PROJECT AS ONLY USERS HAVE THEM AND THEY ARE SHARED IN THE SAME PROFILE FOR NOW!!
+                // **************************************************
+
+                // <div id='UserNotes'>
+                //     {(this.props.displayNotes === true) ? (
+                //       <React.Fragment>
+                //         <div>All User's Notes</div>
+                //         <Button primary onClick={this.props.userCreatingNewNote}>Create New Note</Button>
+                //       </React.Fragment>
+                //         ) : (null)}
+                //   {(this.props.createNote === true) ? (
+                //     <Form>
+                //       <Form.Group widths='equal'>
+                //         <Form.Input fluid label='Note Name' placeholder='Note Name' />
+                //         <Form.Input fluid label='Upload Note Picture' placeholder='Upload Note Picture' />
+                //       </Form.Group>
+                //       <Form.Button primary>Save</Form.Button>
+                //       <Form.Button secondary onClick={this.props.userCancelsCreatingNewNote} >Cancel</Form.Button>
+                //     </Form>
+                //   ) : (null)}
+                // </div> */}
 
               </div>
               ) : (null)
