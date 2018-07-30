@@ -265,6 +265,8 @@ export const reducer = (state = initialState, action) => {
         profileBeingViewed: action.payload,
         loggedIn: true,
         viewingProfile: true,
+        signingUp: false,
+        signUpError: false,
       }
     case "CANCEL_CREATE_USER":
       return {

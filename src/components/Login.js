@@ -86,8 +86,6 @@ class Login extends React.Component {
         },
         body: JSON.stringify(currentUserSignUpInfo)
       })
-
-      
       .then(res => res.json())
       .then(json => this.props.userCreatingNewAccount(json))
     }
