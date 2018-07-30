@@ -135,6 +135,12 @@ export function createNewUser(newUser) {
   }
 }
 
+export function cancelCreateNewUser() {
+  return {
+    type: "CANCEL_CREATE_USER",
+  }
+}
+
 export function createNewTeam() {
   return {
     type: "CREATE_TEAM"

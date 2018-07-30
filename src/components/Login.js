@@ -131,7 +131,7 @@ class Login extends React.Component {
     // console.log('hello',this.props);
     return(
       <React.Fragment>
-        {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false && this.props.loginError === false) ? (
+        {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false && this.props.loginError === false && this.props.signUpError === false) ? (
           <div className="opening-login-page">
             <h1>Welcome to Comedy Kiddo!</h1>
             <Form>
@@ -199,6 +199,7 @@ class Login extends React.Component {
                 <Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.isSignUpCoach}/>
               </Form.Field>
               <Button primary type='submit'>Submit</Button>
+              <Button secondary onClick={this.props.userCancelsCreatingNewAccount} >Cancel</Button>
             </Form>
           </div>
           ) : (null)
@@ -232,6 +233,7 @@ class Login extends React.Component {
                 <Checkbox label='Are You A Coach?' checked={this.state.coachChecked}  onClick={this.isSignUpCoach}/>
               </Form.Field>
               <Button primary type='submit'>Submit</Button>
+              <Button secondary onClick={this.props.userCancelsCreatingNewAccount} >Cancel</Button>
             </Form>
           </div>
 
@@ -279,6 +281,9 @@ function mapDispatchToProps(dispatch) {
     },
     userCreatingNewAccount: (newUser) => {
       dispatch(createNewUser(newUser))
+    },
+    userCancelsCreatingNewAccount: () => {
+      dispatch(cancelCreateNewUser())
     }
   }
 }

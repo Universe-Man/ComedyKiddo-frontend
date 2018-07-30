@@ -263,8 +263,19 @@ export const reducer = (state = initialState, action) => {
         ...state,
         currentUser: action.payload,
         profileBeingViewed: action.payload,
+        loggedIn: true,
+        viewingProfile: true,
       }
-
+    case "CANCEL_CREATE_USER":
+      return {
+        ...state,
+        loggedIn: false,
+        signingUp: false,
+        loginError: false,
+        signUpError: false,
+        viewingProfile: false,
+        searching: false,
+      }
     case "CREATE_TEAM":
       return {
         ...state,
