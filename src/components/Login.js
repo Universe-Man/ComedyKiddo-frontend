@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Checkbox, Form, Message } from 'semantic-ui-react'
 import '../assets/App.css';
 import { connect } from 'react-redux';
-import { userLogsIn, userSigningUp, userLoginError, userSignUpError, createNewUser } from '../actions/index';
+import { userLogsIn, userSigningUp, userLoginError, userSignUpError, createNewUser, cancelCreateNewUser } from '../actions/index';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
 
