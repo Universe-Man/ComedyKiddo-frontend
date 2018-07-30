@@ -84,7 +84,12 @@ class Profile extends React.Component {
   }
 
   finalAnswerDeleteProfile = () => {
-    console.log("for jeff this should be 5", this.props.currentUser.id);
+    let tempAllUsers = [...this.props.allUsers]
+    let userToKill = tempAllUsers.find(user => {
+      return user.email === this.props.currentUser.email
+    })
+    let toRemoveIndex = tempAllUsers.indexOf(userToKill)
+    tempAllUsers.splice(toRemoveIndex, 1)
     fetch(`${userURL}/${this.props.currentUser.id}`, {
       method: "DELETE"
     })
