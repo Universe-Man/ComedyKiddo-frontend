@@ -137,7 +137,7 @@ class Login extends React.Component {
             <Form>
               <Form.Field>
                 <label>Email</label>
-                <input onChange={this.getLoginEmail} placeholder='Email' />
+                <input onChange={this.getLoginEmail} placeholder='Email' autoFocus='autofocus' />
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
@@ -164,7 +164,7 @@ class Login extends React.Component {
                 />
               <Form.Field>
                 <label>Email</label>
-                <input onChange={this.getLoginEmail} placeholder='Email' value={this.state.loginEmail} />
+                <input onChange={this.getLoginEmail} placeholder='Email' autoFocus='autofocus' value={this.state.loginEmail} />
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
