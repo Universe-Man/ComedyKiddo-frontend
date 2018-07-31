@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form, Message, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow, displayOtherUsers, addUserTo, cancelAddUserTo } from '../actions/index';
 import ListItem from '../components/ListItem';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
@@ -103,6 +103,13 @@ class Profile extends React.Component {
     this.props.userLoggingOutFromDelete(tempAllUsers)
   }
 
+  handleClickAddUserTo = () => {
+    console.log("user added to thing");
+  }
+
+  tempGetUserToAdd = () => {
+
+  }
 
   handleClickCreateNewTeam = () => {
     let newTeam = {
@@ -230,6 +237,14 @@ render(){
   } else {
     shows = [];
   }
+  let users
+  if (this.props.profileBeingViewed.users !== undefined) {
+    users = this.props.profileBeingViewed.users.map(user => {
+      return ( <ListItem user={user} id={`${user.source}-${user.id}`} key={`${user.source}-${user.id}`}/> )
+    })
+  } else {
+    users = [];
+  }
   // let notes
   // if (this.props.profileBeingViewed.notes !== undefined) {
   //   notes = this.props.profileBeingViewed.notes.map(note => {
@@ -252,11 +267,11 @@ render(){
       rightButton = <Button onClick={this.props.userDisplaysShows}>Shows</Button>
     } else if (this.props.profileBeingViewed.source === "team") {
       belowName = ""
-      leftButton = "users"
+      leftButton = <Button onClick={this.props.userDisplaysOtherUsers}>Users</Button>
       rightButton = <Button onClick={this.props.userDisplaysShows}>Shows</Button>
     } else if (this.props.profileBeingViewed.source === "show") {
       belowName = this.props.profileBeingViewed.location
-      leftButton = "users"
+      leftButton = <Button onClick={this.props.userDisplaysOtherUsers}>Users</Button>
       rightButton = <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
     }
 
@@ -364,6 +379,30 @@ render(){
 
 
 
+//// ADD USER TO THING handleClickAddUserTo NEEDS TO DO SOMETHING
+//// ALSO HOW AM I GOING TO SELECT THE USER? DROPDOWN?
+
+            <div id='OtherUsers'>
+                {(this.props.displayUsers === true) ? (
+                  <React.Fragment>
+                    <div id='profile-users-list'>
+                      All Blank's Users
+                      {users}
+                    </div>
+                    <Button primary onClick={this.props.userAddingUserTo}>Add User</Button>
+                  </React.Fragment>
+                    ) : (null)}
+              {(this.props.addUserTo === true) ? (
+                <Form>
+                  <Form.Group widths='equal'>
+                    <Form.Input fluid label='User Name' placeholder='User Name' autoFocus="autofocus" onChange={this.tempGetUserToAdd} />
+                  </Form.Group>
+                  <Form.Button primary onClick={this.handleClickAddUserTo} >Save</Form.Button>
+                  <Form.Button secondary onClick={this.props.userCancelAddingUserTo} >Cancel</Form.Button>
+                </Form>
+              ) : (null)}
+            </div>
+
 
 
 
@@ -454,6 +493,7 @@ function mapStateToProps(state) {
     editingTeams: state.editingTeams,
     editingShows: state.editingShows,
     editingNotes: state.editingNotes,
+    displayUsers: state.displayUsers,
     displayTeams: state.displayTeams,
     displayShows: state.displayShows,
     displayNotes: state.displayNotes,
@@ -463,7 +503,8 @@ function mapStateToProps(state) {
     allUsers: state.allUsers,
     allTeams: state.allTeams,
     allShows: state.allShows,
-    deleteProfileWarning: state.deleteProfileWarning
+    deleteProfileWarning: state.deleteProfileWarning,
+    addUserTo: state.addUserTo,
   }
 }
 
@@ -496,6 +537,9 @@ function mapDispatchToProps(dispatch) {
     userEditingNotes: () => {
       dispatch(editNotes())
     },
+    userDisplaysOtherUsers: () => {
+      dispatch(displayOtherUsers())
+    },
     userDisplaysTeams: () => {
       dispatch(displayTeams())
     },
@@ -504,6 +548,12 @@ function mapDispatchToProps(dispatch) {
     },
     userDisplaysNotes: () => {
       dispatch(displayNotes())
+    },
+    userAddingUserTo: () => {
+      dispatch(addUserTo())
+    },
+    userCancelAddingUserTo: () => {
+      dispatch(cancelAddUserTo())
     },
     userCreatingNewTeam: () => {
       dispatch(createNewTeam())

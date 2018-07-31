@@ -15,6 +15,8 @@ const ListItem = (props) => {
     item = props.note
   } else if (props.dataObj) {
     item = props.dataObj
+  } else if (props.user) {
+    item = props.user
   }
 
   if (item === undefined) {

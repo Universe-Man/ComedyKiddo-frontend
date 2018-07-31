@@ -123,6 +123,12 @@ export function editNotes() {
   }
 }
 
+export function displayOtherUsers() {
+  return {
+    type: "DISPLAY_OTHER_USERS"
+  }
+}
+
 export function displayTeams() {
   return {
     type: "DISPLAY_TEAMS"
@@ -148,6 +154,17 @@ export function createNewUser(newUser) {
   }
 }
 
+export function addUserTo() {
+  return {
+    type: "ADD_USER_TO"
+  }
+}
+
+export function cancelAddUserTo() {
+  return {
+    type: "CANCEL_ADD_USER_TO"
+  }
+}
 
 export function cancelCreateNewUser() {
   return {

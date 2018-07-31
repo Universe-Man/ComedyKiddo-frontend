@@ -16,9 +16,11 @@ const initialState = {
   editingTeams: false,
   editingShows: false,
   editingNotes: false,
+  displayUsers: false,
   displayTeams: false,
   displayShows: false,
   displayNotes: false,
+  addUserTo: false,
   createTeam: false,
   createShow: false,
   createNote: false,
@@ -37,6 +39,8 @@ export const reducer = (state = initialState, action) => {
         if (state.signingUp === true) {
           return {
             ...state,
+            addUserTo: false,
+            displayUsers: false,
             loggedIn: true,
             signingUp: false,
             viewingProfile: true,
@@ -48,6 +52,8 @@ export const reducer = (state = initialState, action) => {
         } else {
           return {
             ...state,
+            addUserTo: false,
+            displayUsers: false,
             //...renderState,
             loggedIn: true,
             viewingProfile: true,
@@ -60,6 +66,8 @@ export const reducer = (state = initialState, action) => {
     case "LOGGED_OUT":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         //...renderState,
         loggedIn: false,
         viewingProfile: false,
@@ -84,22 +92,30 @@ export const reducer = (state = initialState, action) => {
     case "SIGNING_UP":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         //...renderState,
         signingUp: true,
       }
     case "LOGIN_ERROR":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         loginError: true,
       }
     case "SIGNUP_ERROR":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         signUpError: true,
       }
     case "VIEWING_PROFILE":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         //...renderState,
         viewingProfile: true,
         searching: false,
@@ -119,6 +135,8 @@ export const reducer = (state = initialState, action) => {
     case "SEARCHING":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         //...renderState,
         searching: true,
         viewingProfile: false,
@@ -138,21 +156,29 @@ export const reducer = (state = initialState, action) => {
     case "GET_ALL_USERS":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         allUsers: action.payload
       }
     case "GET_ALL_TEAMS":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         allTeams: action.payload
       }
     case "GET_ALL_SHOWS":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         allShows: action.payload
       }
     case "RENDER_THIS_PROFILE":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         profileBeingViewed: action.payload,
         viewingProfile: true,
         searching: false,
@@ -161,6 +187,8 @@ export const reducer = (state = initialState, action) => {
     case "EDIT_PROFILE":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         editingProfile: true,
         editingTeams: false,
         editingShows: false,
@@ -175,6 +203,8 @@ export const reducer = (state = initialState, action) => {
     case "COMPLETE_EDIT_PROFILE":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         editingProfile: false,
         editingProfileError: false,
         currentUser: action.payload[0],
@@ -184,18 +214,23 @@ export const reducer = (state = initialState, action) => {
     case "CANCEL_EDIT_PROFILE":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         editingProfile: false,
         editingProfileError: false,
       }
     case "EDIT_PROFILE_ERROR":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         editingProfileError: true,
       }
     case "LOGOUT_FROM_DELETE":
       return {
         ...state,
-        ...state,
+        addUserTo: false,
+        displayUsers: false,
         //...renderState,
         loggedIn: false,
         viewingProfile: false,
@@ -221,6 +256,8 @@ export const reducer = (state = initialState, action) => {
     case "EDIT_TEAMS":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         editingTeams: true,
         editingProfile: false,
         editingShows: false,
@@ -235,6 +272,8 @@ export const reducer = (state = initialState, action) => {
     case "EDIT_SHOWS":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         editingShows: true,
         editingProfile: false,
         editingTeams: false,
@@ -249,6 +288,8 @@ export const reducer = (state = initialState, action) => {
     case "EDIT_NOTES":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         editingNotes: true,
         editingProfile: false,
         editingTeams: false,
@@ -260,9 +301,31 @@ export const reducer = (state = initialState, action) => {
         createShow: false,
         createNote: false,
       }
+    case "DISPLAY_OTHER_USERS":
+      return {
+        ...state,
+        addUserTo: false,
+        displayUsers: true,
+        displayNotes: false,
+        displayTeams: false,
+        displayShows: false,
+        editingProfile: false,
+        editingProfileError: false,
+        editingTeams: false,
+        editingShows: false,
+        editingNotes: false,
+        createTeam: false,
+        createShow: false,
+        createNote: false,
+      }
+
+
+
     case "DISPLAY_TEAMS":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         displayNotes: false,
         displayTeams: true,
         displayShows: false,
@@ -278,6 +341,8 @@ export const reducer = (state = initialState, action) => {
     case "DISPLAY_SHOWS":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         displayNotes: false,
         displayTeams: false,
         displayShows: true,
@@ -292,6 +357,8 @@ export const reducer = (state = initialState, action) => {
     case "DISPLAY_NOTES":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         displayNotes: true,
         displayTeams: false,
         displayShows: false,
@@ -306,6 +373,8 @@ export const reducer = (state = initialState, action) => {
     case "CREATE_USER":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         currentUser: action.payload,
         profileBeingViewed: action.payload,
         loggedIn: true,
@@ -316,6 +385,8 @@ export const reducer = (state = initialState, action) => {
     case "CANCEL_CREATE_USER":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         loggedIn: false,
         signingUp: false,
         loginError: false,
@@ -323,9 +394,22 @@ export const reducer = (state = initialState, action) => {
         viewingProfile: false,
         searching: false,
       }
+    case "ADD_USER_TO":
+      return {
+        ...state,
+        addUserTo: true,
+      }
+    case "CANCEL_ADD_USER_TO":
+      return {
+        ...state,
+        addUserTo: false,
+        displayUsers: false,
+      }
     case "CREATE_TEAM":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         displayTeams: false,
         createTeam: true,
         displayNotes: false,
@@ -340,17 +424,23 @@ export const reducer = (state = initialState, action) => {
     case "COMPLETE_CREATE_NEW_TEAM":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         createTeam: false,
         allTeams: action.payload[1]
       }
     case "CANCEL_CREATE_TEAM":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         createTeam: false,
       }
     case "CREATE_SHOW":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         displayShows: false,
         createTeam: false,
         displayNotes: false,
@@ -365,17 +455,23 @@ export const reducer = (state = initialState, action) => {
     case "COMPLETE_CREATE_NEW_SHOW":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         createShow: false,
         allShows: action.payload[1]
         }
     case "CANCEL_CREATE_SHOW":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         createShow: false,
       }
     case "CREATE_NOTE":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         displayNotes: false,
         createNote: true,
         displayTeams: false,
@@ -390,6 +486,8 @@ export const reducer = (state = initialState, action) => {
     case "CANCEL_CREATE_NOTE":
       return {
         ...state,
+        addUserTo: false,
+        displayUsers: false,
         createNote: false,
       }
     default:
