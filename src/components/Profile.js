@@ -111,6 +111,8 @@ class Profile extends React.Component {
       shows: [],
       source: "team"
     }
+    let updateUser = {...this.props.currentUser}
+    updateUser.teams.push(newTeam)
     let tempAllTeams = [...this.props.allTeams]
     tempAllTeams.push(newTeam)
     fetch(teamURL, {
@@ -123,6 +125,16 @@ class Profile extends React.Component {
     })
     .then(res => res.json())
     .then(json => this.props.userOfficiallyCreatesTeam(json, tempAllTeams))
+    .then(
+      fetch(`${userURL}/${this.props.currentUser.id}`, {
+        method: "PATCH",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updateUser)
+      })
+    )
   }
 
   handleClickCreateNewShow = () => {
