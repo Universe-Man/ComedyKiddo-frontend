@@ -4,11 +4,30 @@ import { renderThisProfile } from '../actions/index';
 
 
 const ListItem = (props) => {
-  return (
-    <li onClick={() => {props.selectProfile(props.dataObj)}}>
-      {props.dataObj.name}
-    </li>
-  )
+  console.log("what is props? ListItem", props);
+
+  let item
+  if (props.show) {
+    item = props.show
+  } else if (props.team) {
+    item = props.team
+  } else if (props.note) {
+    item = props.note
+  } else if (props.dataObj) {
+    item = props.dataObj
+  }
+
+  if (item === undefined) {
+    return (
+      <li></li>
+    )
+  } else {
+    return (
+      <li onClick={() => {props.selectProfile(item)}}>
+        {item.name}
+      </li>
+    )
+  }
 }
 
 function mapDispatchToProps(dispatch) {

@@ -21,6 +21,9 @@ class Searcher extends React.Component {
 
 // MIKE IS REACT BATMAN!! (REVIEW COMPONENT LIFECYCLE CHART)
   componentWillReceiveProps(){
+    console.log("this.props.allUsers", this.props.allUsers);
+    console.log("this.props.allTeams", this.props.allTeams);
+    console.log("this.props.allShows", this.props.allShows);
     this.filterStuff()
   }
 

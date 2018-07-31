@@ -192,8 +192,10 @@ class Profile extends React.Component {
     })
   }
 
+
 render(){
-  // console.log('STATE OF PROFILE', this.state);
+
+  console.log('STATE OF PROFILE', this.state);
   let teams
   if (this.props.profileBeingViewed.teams !== undefined) {
     teams = this.props.profileBeingViewed.teams.map(team => {
@@ -204,6 +206,7 @@ render(){
     teams = [];
   }
   let shows
+  console.log("profile's shows", this.props.profileBeingViewed);
   if (this.props.profileBeingViewed.shows !== undefined) {
     shows = this.props.profileBeingViewed.shows.map(show => {
       // console.log('shows', show);
@@ -212,15 +215,15 @@ render(){
   } else {
     shows = [];
   }
-  let notes
-  if (this.props.profileBeingViewed.notes !== undefined) {
-    notes = this.props.profileBeingViewed.notes.map(note => {
-      // console.log('notes', note);
-      return ( <ListItem note={note} id={note.id} key={note.id}/> )
-    })
-  } else {
-    notes = [];
-  }
+  // let notes
+  // if (this.props.profileBeingViewed.notes !== undefined) {
+  //   notes = this.props.profileBeingViewed.notes.map(note => {
+  //     // console.log('notes', note);
+  //     return ( <ListItem note={note} id={note.id} key={note.id}/> )
+  //   })
+  // } else {
+  //   notes = [];
+  // }
     // console.log("the current profile?", this.props.profileBeingViewed);
     // console.log("editing profile?", this.props.editingProfile);
     // console.log("CONCENTRATED GOD STATE", this.props);
@@ -337,7 +340,10 @@ render(){
             <div id='UserTeams'>
                 {(this.props.displayTeams === true) ? (
                   <React.Fragment>
-                    <div>All User's Teams</div>
+                    <div id='profile-teams-list'>
+                      All User's Teams
+                      {teams}
+                    </div>
                     <Button primary onClick={this.props.userCreatingNewTeam}>Create New Team</Button>
                   </React.Fragment>
                     ) : (null)}
@@ -355,7 +361,10 @@ render(){
                 <div id='UserShows'>
                     {(this.props.displayShows === true) ? (
                       <React.Fragment>
-                        <div>All User's Shows</div>
+                        <div id='profile-shows-list'>
+                          All User's Shows
+                          {shows}
+                        </div>
                         <Button primary onClick={this.props.userCreatingNewShow}>Create New Show</Button>
                       </React.Fragment>
                         ) : (null)}
@@ -378,7 +387,9 @@ render(){
                 // <div id='UserNotes'>
                 //     {(this.props.displayNotes === true) ? (
                 //       <React.Fragment>
-                //         <div>All User's Notes</div>
+                //         <div  id='profile-notes-list'>All User's Notes
+                {notes}
+                </div>
                 //         <Button primary onClick={this.props.userCreatingNewNote}>Create New Note</Button>
                 //       </React.Fragment>
                 //         ) : (null)}

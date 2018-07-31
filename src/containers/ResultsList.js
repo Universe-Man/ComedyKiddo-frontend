@@ -10,7 +10,6 @@ const ResultsList = (props) => {
 
 
 // let currentFilteredData = [];
-// console.log('OH SHIT!', this.currentFilteredData);
 // NEED TO ADD WHETHER COACH OR LOOKING FOR CERTAIN THINGS, ETC. FILTER!!
 
   let renderData = props.filteredData.map(dataObj => {
