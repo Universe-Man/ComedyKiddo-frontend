@@ -242,6 +242,24 @@ render(){
     // console.log("the current profile?", this.props.profileBeingViewed);
     // console.log("editing profile?", this.props.editingProfile);
     // console.log("CONCENTRATED GOD STATE", this.props);
+
+    let belowName
+    let leftButton
+    let rightButton
+    if (this.props.profileBeingViewed.source === "user") {
+      belowName = this.props.profileBeingViewed.email
+      leftButton = <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
+      rightButton = <Button onClick={this.props.userDisplaysShows}>Shows</Button>
+    } else if (this.props.profileBeingViewed.source === "team") {
+      belowName = ""
+      leftButton = "users"
+      rightButton = <Button onClick={this.props.userDisplaysShows}>Shows</Button>
+    } else if (this.props.profileBeingViewed.source === "show") {
+      belowName = this.props.profileBeingViewed.location
+      leftButton = "users"
+      rightButton = <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
+    }
+
     return(
 
           <React.Fragment>
@@ -259,18 +277,16 @@ render(){
                   <img src="https://epss.ucla.edu/media/images/profile_pictures/default.jpg" id="profile-pic"/>
                 </Container>
                 <Container textAlign='left'>
-                  <h3>{this.props.profileBeingViewed.email}</h3>
+                  <h3>{belowName}</h3>
                 </Container>
 
 
 
                 <Container textAlign='left'>
-                  <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
-                  <h3>teams</h3>
+                  {leftButton}
                 </Container>
                 <Container textAlign='center'>
-                  <Button onClick={this.props.userDisplaysShows}>Shows</Button>
-                  <h3>shows</h3>
+                  {rightButton}
                 </Container>
 
   {/*}  // **************************************************
