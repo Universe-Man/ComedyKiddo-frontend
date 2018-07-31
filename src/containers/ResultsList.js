@@ -17,7 +17,6 @@ const ResultsList = (props) => {
      })
 
 
-console.log("THIS IS IN THE RESULTS LIST", props.filteredData);
 
 
 

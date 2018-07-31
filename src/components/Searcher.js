@@ -40,6 +40,9 @@ class Searcher extends React.Component {
   }
 
   filterStuff = () => {
+    console.log("ALLUSERS", this.props.allUsers);
+    console.log("ALLTEAMS", this.props.allTeams);
+    console.log("ALLSHOWS", this.props.allShows);
     let filteredUsers = this.props.allUsers.filter(user => user.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
     let filteredTeams = this.props.allTeams.filter(team => team.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
     let filteredShows = this.props.allShows.filter(show => show.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))

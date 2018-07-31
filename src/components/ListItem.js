@@ -6,6 +6,8 @@ import { renderThisProfile } from '../actions/index';
 const ListItem = (props) => {
   console.log("what is props? ListItem", props);
 
+  let allDataMix = [...props.allUsers, ...props.allTeams, ...props.allShows]
+
   let item
   if (props.show) {
     item = props.show
@@ -19,16 +21,29 @@ const ListItem = (props) => {
     item = props.user
   }
 
+  let clickedObject =
+    allDataMix.find(obj => {
+      return obj.id === item.id && obj.source === item.source
+    })
+
   if (item === undefined) {
     return (
       <li></li>
     )
   } else {
     return (
-      <li onClick={() => {props.selectProfile(item)}}>
-        {item.name}
+      <li onClick={() => {props.selectProfile(clickedObject)}}>
+        {clickedObject.name}
       </li>
     )
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    allUsers: state.allUsers,
+    allTeams: state.allTeams,
+    allShows: state.allShows,
   }
 }
 
@@ -40,4 +55,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

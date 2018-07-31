@@ -214,26 +214,22 @@ class Profile extends React.Component {
 
 render(){
   console.log("THIS IS THE CURRENT USER", this.props.currentUser);
-
   console.log('STATE OF PROFILE', this.state);
   console.log('STORE OF PROFILE', this.props);
-
+  console.log('PROFILE BEING VIEWED', this.props.profileBeingViewed);
   let teams
   if (this.props.profileBeingViewed.teams !== undefined) {
     teams = this.props.profileBeingViewed.teams.map(team => {
-      console.log('teams', team);
       return ( <ListItem team={team} id={`${team.source}-${team.id}`} key={`${team.source}-${team.id}`}/> )
     })
   } else if (this.props.profileBeingViewed.teams_uniq !== undefined) {
     teams = this.props.profileBeingViewed.teams_uniq.map(team => {
-      console.log('teams', team);
       return ( <ListItem team={team} id={`${team.source}-${team.id}`} key={`${team.source}-${team.id}`}/> )
     })
   } else {
     teams = [];
   }
   let shows
-  console.log("profile's shows", this.props.profileBeingViewed);
   if (this.props.profileBeingViewed.shows !== undefined) {
     shows = this.props.profileBeingViewed.shows.map(show => {
       return ( <ListItem show={show} id={`${show.source}-${show.id}`} key={`${show.source}-${show.id}`}/> )
