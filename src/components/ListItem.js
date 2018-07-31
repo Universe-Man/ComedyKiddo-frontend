@@ -26,7 +26,7 @@ const ListItem = (props) => {
       return obj.id === item.id && obj.source === item.source
     })
 
-  if (item === undefined) {
+  if (item === undefined || clickedObject === undefined) {
     return (
       <li></li>
     )
