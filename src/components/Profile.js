@@ -206,8 +206,11 @@ class Profile extends React.Component {
 
 
 render(){
+  console.log("THIS IS THE CURRENT USER", this.props.currentUser);
 
   console.log('STATE OF PROFILE', this.state);
+  console.log('STORE OF PROFILE', this.props);
+
   let teams
   if (this.props.profileBeingViewed.teams !== undefined) {
     teams = this.props.profileBeingViewed.teams.map(team => {
