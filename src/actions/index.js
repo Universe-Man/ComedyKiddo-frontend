@@ -168,6 +168,13 @@ export function createNewTeam() {
   }
 }
 
+export function completeCreateNewTeam(newTeam, tempAllTeams) {
+  return {
+    type: "COMPLETE_CREATE_NEW_TEAM",
+    payload: [newTeam, tempAllTeams]
+  }
+}
+
 export function cancelCreateNewTeam() {
   return {
     type: "CANCEL_CREATE_TEAM"
@@ -177,6 +184,13 @@ export function cancelCreateNewTeam() {
 export function createNewShow() {
   return {
     type: "CREATE_SHOW"
+  }
+}
+
+export function completeCreateNewShow(newShow, tempAllShows) {
+  return {
+    type: "COMPLETE_CREATE_NEW_SHOW",
+    payload: [newShow, tempAllShows]
   }
 }
 

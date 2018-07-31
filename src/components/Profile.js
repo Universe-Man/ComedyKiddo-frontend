@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form, Message, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow } from '../actions/index';
 import ListItem from '../components/ListItem';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
@@ -16,8 +16,14 @@ class Profile extends React.Component {
       editProfilePic: "",
       coachChecked: false,
       deleteWarningOpen: false,
+      newTeamName: "",
+      newShowName: "",
+      newShowLocation: "",
     }
   }
+
+
+
 
   componentWillReceiveProps(){
     if (this.props.profileBeingViewed !== undefined) {
@@ -98,7 +104,51 @@ class Profile extends React.Component {
   }
 
 
+  handleClickCreateNewTeam = () => {
+    let newTeam = {
+      name: this.state.newTeamName,
+      users: [this.props.currentUser],
+      shows: [],
+      source: "team"
+    }
+    let tempAllTeams = [...this.props.allTeams]
+    tempAllTeams.push(newTeam)
+    fetch(teamURL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTeam)
+    })
+    .then(res => res.json())
+    .then(json => this.props.userOfficiallyCreatesTeam(json, tempAllTeams))
+  }
 
+  handleClickCreateNewShow = () => {
+    let newShow = {
+      name: this.state.newShowName,
+      location: this.state.newShowLocation,
+      users: [this.props.currentUser],
+      teams: [],
+      source: "show"
+    }
+    let tempAllShows = [...this.props.allShows]
+    console.log("tempAllShows before push", tempAllShows);
+    tempAllShows.push(newShow)
+    console.log("tempAllShows after push", tempAllShows);
+
+    fetch(showURL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newShow)
+    })
+    .then(res => res.json())
+    .then(json => this.props.userOfficiallyCreatesShow(json, tempAllShows))
+  }
 
   editUserName = (event) => {
     this.setState({
@@ -124,9 +174,26 @@ class Profile extends React.Component {
     })
   }
 
+  getNewTeamName = (event) => {
+    this.setState({
+      newTeamName: event.target.value
+    })
+  }
+
+  getNewShowName = (event) => {
+    this.setState({
+      newShowName: event.target.value
+    })
+  }
+
+  getNewShowLocation = (event) => {
+    this.setState({
+      newShowLocation: event.target.value
+    })
+  }
 
 render(){
-  console.log('STATE OF PROFILE', this.state);
+  // console.log('STATE OF PROFILE', this.state);
   let teams
   if (this.props.profileBeingViewed.teams !== undefined) {
     teams = this.props.profileBeingViewed.teams.map(team => {
@@ -139,7 +206,7 @@ render(){
   let shows
   if (this.props.profileBeingViewed.shows !== undefined) {
     shows = this.props.profileBeingViewed.shows.map(show => {
-      console.log('shows', show);
+      // console.log('shows', show);
       return ( <ListItem show={show} id={`${show.source}-${show.id}`} key={`${show.source}-${show.id}`}/> )
     })
   } else {
@@ -148,15 +215,15 @@ render(){
   let notes
   if (this.props.profileBeingViewed.notes !== undefined) {
     notes = this.props.profileBeingViewed.notes.map(note => {
-      console.log('notes', note);
+      // console.log('notes', note);
       return ( <ListItem note={note} id={note.id} key={note.id}/> )
     })
   } else {
     notes = [];
   }
-    console.log("the current profile?", this.props.profileBeingViewed);
-    console.log("editing profile?", this.props.editingProfile);
-    console.log("CONCENTRATED GOD STATE", this.props);
+    // console.log("the current profile?", this.props.profileBeingViewed);
+    // console.log("editing profile?", this.props.editingProfile);
+    // console.log("CONCENTRATED GOD STATE", this.props);
     return(
 
           <React.Fragment>
@@ -277,10 +344,9 @@ render(){
               {(this.props.createTeam === true) ? (
                 <Form>
                   <Form.Group widths='equal'>
-                    <Form.Input fluid label='Team Name' placeholder='Team Name' />
-                    <Form.Input fluid label='Upload Team Picture' placeholder='Upload Team Picture' />
+                    <Form.Input fluid label='Team Name' placeholder='Team Name' autoFocus="autofocus" onChange={this.getNewTeamName} />
                   </Form.Group>
-                  <Form.Button primary>Save</Form.Button>
+                  <Form.Button primary onClick={this.handleClickCreateNewTeam} >Save</Form.Button>
                   <Form.Button secondary onClick={this.props.userCancelsCreatingNewTeam} >Cancel</Form.Button>
                 </Form>
               ) : (null)}
@@ -296,11 +362,11 @@ render(){
                   {(this.props.createShow === true) ? (
                     <Form>
                       <Form.Group widths='equal'>
-                        <Form.Input fluid label='Show Name' placeholder='Show Name' />
-                        <Form.Input fluid label='Upload Show Picture' placeholder='Upload Show Picture' />
+                        <Form.Input fluid label='Show Name' placeholder='Show Name' autoFocus="autofocus" onChange={this.getNewShowName} />
+                        <Form.Input fluid label='Show Location' placeholder='Show Location' onChange={this.getNewShowLocation} />
                       </Form.Group>
-                      <Form.Button primary>Save</Form.Button>
-                      <Form.Button secondary onClick={this.props.userCancelsCreatingNewShow} >Cancel</Form.Button>
+                      <Form.Button primary onClick={this.props.userOfficiallyCreatesShow} >Save</Form.Button>
+                      <Form.Button secondary onClick={this.handleClickCreateNewShow} >Cancel</Form.Button>
                     </Form>
                   ) : (null)}
                 </div>
@@ -353,6 +419,8 @@ function mapStateToProps(state) {
     createShow: state.createShow,
     createNote: state.createNote,
     allUsers: state.allUsers,
+    allTeams: state.allTeams,
+    allShows: state.allShows,
     deleteProfileWarning: state.deleteProfileWarning
   }
 }
@@ -370,6 +438,12 @@ function mapDispatchToProps(dispatch) {
     },
     userEditingProfileError: () => {
       dispatch(editProfileError())
+    },
+    userOfficiallyCreatesTeam: (newTeam, tempAllTeams) => {
+      dispatch(completeCreateNewTeam(newTeam, tempAllTeams))
+    },
+    userOfficiallyCreatesShow: (newShow, tempAllShows) => {
+      dispatch(completeCreateNewShow(newShow, tempAllShows))
     },
     userEditingTeams: () => {
       dispatch(editTeams())

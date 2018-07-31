@@ -337,6 +337,12 @@ export const reducer = (state = initialState, action) => {
         createShow: false,
         createNote: false,
       }
+    case "COMPLETE_CREATE_NEW_TEAM":
+      return {
+        ...state,
+        createTeam: false,
+        allTeams: action.payload[1]
+      }
     case "CANCEL_CREATE_TEAM":
       return {
         ...state,
@@ -356,6 +362,12 @@ export const reducer = (state = initialState, action) => {
         createShow: true,
         createNote: false,
       }
+    case "COMPLETE_CREATE_NEW_SHOW":
+      return {
+        ...state,
+        createShow: false,
+        allShows: action.payload[1]
+        }
     case "CANCEL_CREATE_SHOW":
       return {
         ...state,

@@ -43,7 +43,7 @@ class Login extends React.Component {
       email: this.state.loginEmail,
       password: this.state.loginPassword
     }
-    console.log(currentUserLoginInfo);
+    // console.log(currentUserLoginInfo);
     let currentUser =
       this.props.allUsers.find(user => {
         return user.email === currentUserLoginInfo.email && user.password === currentUserLoginInfo.password
@@ -52,7 +52,7 @@ class Login extends React.Component {
       currentUser = {};
       this.props.userLoggingInError()
     } else {
-    console.log(currentUser)
+    // console.log(currentUser)
     this.props.userLoggingIn(currentUser)
     currentUser = {};
     this.setState({
@@ -97,13 +97,13 @@ class Login extends React.Component {
   getLoginEmail = (event) => {
     this.setState({
       loginEmail: event.target.value
-    }, () => console.log("LOGIN-EMAIL", this.state.loginEmail))
+    })
   }
 
   getLoginPassword = (event) => {
     this.setState({
       loginPassword: event.target.value
-    }, () => console.log("LOGIN-PASSWORD", this.state.loginPassword))
+    })
   }
 
   getSignUpName = (event) => {
@@ -127,7 +127,7 @@ class Login extends React.Component {
   isSignUpCoach = () => {
     this.setState({
       coachChecked: !this.state.coachChecked
-    }, () => {console.log("coachChecked?", this.state.coachChecked)})
+    })
   }
 
   render(){
@@ -156,7 +156,7 @@ class Login extends React.Component {
           ) : (null)
         }
 
-        {(this.props.loginError === true) ? (
+        {(this.props.loginError === true && this.props.signingUp === false) ? (
           <div className="opening-login-page">
             <h1>Welcome to Comedy Kiddo!</h1>
             <Form error>
