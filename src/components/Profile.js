@@ -224,6 +224,11 @@ render(){
       console.log('teams', team);
       return ( <ListItem team={team} id={`${team.source}-${team.id}`} key={`${team.source}-${team.id}`}/> )
     })
+  } else if (this.props.profileBeingViewed.teams_uniq !== undefined) {
+    teams = this.props.profileBeingViewed.teams_uniq.map(team => {
+      console.log('teams', team);
+      return ( <ListItem team={team} id={`${team.source}-${team.id}`} key={`${team.source}-${team.id}`}/> )
+    })
   } else {
     teams = [];
   }
@@ -231,7 +236,10 @@ render(){
   console.log("profile's shows", this.props.profileBeingViewed);
   if (this.props.profileBeingViewed.shows !== undefined) {
     shows = this.props.profileBeingViewed.shows.map(show => {
-      // console.log('shows', show);
+      return ( <ListItem show={show} id={`${show.source}-${show.id}`} key={`${show.source}-${show.id}`}/> )
+    })
+  } else if (this.props.profileBeingViewed.shows_uniq !== undefined) {
+    shows = this.props.profileBeingViewed.shows_uniq.map(show => {
       return ( <ListItem show={show} id={`${show.source}-${show.id}`} key={`${show.source}-${show.id}`}/> )
     })
   } else {
