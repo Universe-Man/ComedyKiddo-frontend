@@ -136,6 +136,20 @@ export function deleteAUser(newSetOfUsers, currentUser) {
   }
 }
 
+export function deleteATeam(newSetOfTeams, currentUser) {
+  return {
+    type: "DELETE_A_TEAM",
+    payload: [newSetOfTeams, currentUser]
+  }
+}
+
+export function deleteAShow(newSetOfShows, currentUser) {
+  return {
+    type: "DELETE_A_SHOW",
+    payload: [newSetOfShows, currentUser]
+  }
+}
+
 export function displayTeams() {
   return {
     type: "DISPLAY_TEAMS"

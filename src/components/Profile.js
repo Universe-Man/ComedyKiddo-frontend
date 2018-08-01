@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form, Message, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow, displayOtherUsers, addUserTo, cancelAddUserTo, deleteAUser } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow, displayOtherUsers, addUserTo, cancelAddUserTo, deleteAUser, deleteATeam, deleteAShow } from '../actions/index';
 import ListItem from '../components/ListItem';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
@@ -119,14 +119,20 @@ class Profile extends React.Component {
         method: "DELETE"
       })
       this.warnDeleteProfile()
-//halfway
-      this.props.userDeletesAUser(tempAllTeams, this.props.currentUser)
-
-
+      this.props.userDeletesATeam(tempAllTeams, this.props.currentUser)
     } else if (this.props.profileBeingViewed.source === "show") {
-
+      let tempAllShows = [...this.props.allShows]
+      let showToKill = tempAllShows.find(show => {
+        return show.id === this.props.profileBeingViewed.id
+      })
+      let toRemoveIndex = tempAllShows.indexOf(showToKill)
+      tempAllShows.splice(toRemoveIndex, 1)
+      fetch(`${showURL}/${this.props.profileBeingViewed.id}`, {
+        method: "DELETE"
+      })
+      this.warnDeleteProfile()
+      this.props.userDeletesAShow(tempAllShows, this.props.currentUser)
     }
-
   }
 
 
@@ -635,6 +641,12 @@ function mapDispatchToProps(dispatch) {
     },
     userDeletesAUser: (newSetOfUsers, currentUser) => {
       dispatch(deleteAUser(newSetOfUsers, currentUser))
+    },
+    userDeletesATeam: (newSetOfTeams, currentUser) => {
+      dispatch(deleteATeam(newSetOfTeams, currentUser))
+    },
+    userDeletesAShow: (newSetOfShows, currentUser) => {
+      dispatch(deleteAShow(newSetOfShows, currentUser))
     },
     userLoggingOutFromDelete: (newSetOfUsers) => {
       dispatch(logOutFromDelete(newSetOfUsers))

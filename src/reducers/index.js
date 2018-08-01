@@ -407,6 +407,24 @@ export const reducer = (state = initialState, action) => {
         editingProfile: false,
         editingProfileError: false,
       }
+    case "DELETE_A_TEAM":
+      return {
+        ...state,
+        viewingProfile: true,
+        profileBeingViewed: action.payload[1],
+        allTeams: action.payload[0],
+        editingProfile: false,
+        editingProfileError: false,
+      }
+    case "DELETE_A_SHOW":
+      return {
+        ...state,
+        viewingProfile: true,
+        profileBeingViewed: action.payload[1],
+        allShows: action.payload[0],
+        editingProfile: false,
+        editingProfileError: false,
+      }
     case "ADD_USER_TO":
       return {
         ...state,
