@@ -606,8 +606,8 @@ render(){
                         <Form.Input fluid label='Show Name' placeholder='Show Name' autoFocus="autofocus" onChange={this.getNewShowName} />
                         <Form.Input fluid label='Show Location' placeholder='Show Location' onChange={this.getNewShowLocation} />
                       </Form.Group>
-                      <Form.Button primary onClick={this.props.userOfficiallyCreatesShow} >Save</Form.Button>
-                      <Form.Button secondary onClick={this.handleClickCreateNewShow} >Cancel</Form.Button>
+                      <Form.Button primary onClick={this.handleClickCreateNewShow} >Save</Form.Button>
+                      <Form.Button secondary onClick={this.props.userCancelsCreatingNewShow} >Cancel</Form.Button>
                     </Form>
                   ) : (null)}
                 </div>
