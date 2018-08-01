@@ -484,7 +484,7 @@ render(){
 
 
 
-                {(this.props.editingProfileError === true) ? (
+                {(this.props.editingProfileError === true && this.props.profileBeingViewed.source === "user") ? (
                   <Form error>
                     <Message
                       error
@@ -492,9 +492,9 @@ render(){
                       content='An Account with this Email Address Already Exists.'
                       />
                     <Form.Group widths='equal'>
-                      <Form.Input fluid label='Full Name' placeholder='Full Name' autoFocus='autofocus' onChange={this.editUserName} />
-                      <Form.Input fluid label='Email' placeholder='Email' onChange={this.editUserEmail} />
-                      <Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />
+                      <Form.Input fluid label='Full Name' defaultValue={this.props.profileBeingViewed.name} placeholder='Full Name' autoFocus='autofocus' onChange={this.editUserName} />
+                      <Form.Input fluid label='Email' placeholder='Email' defaultValue={this.props.profileBeingViewed.email} onChange={this.editUserEmail} />
+                      {/*<Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />*/}
                       <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />
                     </Form.Group>
                     <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
@@ -503,6 +503,43 @@ render(){
                   </Form>
                 ) : (null)}
 
+                {(this.props.editingProfileError === true && this.props.profileBeingViewed.source === "team") ? (
+                  <Form error>
+                    <Message
+                      error
+                      header='Team Already Exists'
+                      content='A Team with this Name Already Exists.'
+                      />
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid label='Team Name' placeholder='Team Name' defaultValue={this.props.profileBeingViewed.name} autoFocus='autofocus' onChange={this.editUserName} />
+                      {/*<Form.Input fluid label='Email' placeholder='Email' onChange={this.editUserEmail} />
+                      <Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />
+                      <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />*/}
+                    </Form.Group>
+                    <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
+                    <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
+                    <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
+                  </Form>
+                ) : (null)}
+
+                {(this.props.editingProfileError === true && this.props.profileBeingViewed.source === "show") ? (
+                  <Form error>
+                    <Message
+                      error
+                      header='Show Already Exists'
+                      content='A Show with this Name Already Exists.'
+                      />
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid label='Show Name' placeholder='Show Name' defaultValue={this.props.profileBeingViewed.name} autoFocus='autofocus' onChange={this.editUserName} />
+                      <Form.Input fluid label='Location' placeholder='Location' defaultValue={this.props.profileBeingViewed.location} onChange={this.editUserEmail} />
+                      {/*<Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />
+                      <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />*/}
+                    </Form.Group>
+                    <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
+                    <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
+                    <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
+                  </Form>
+                ) : (null)}
 
                 {(this.props.profileBeingViewed === this.props.currentUser) ? (
                   <Modal
