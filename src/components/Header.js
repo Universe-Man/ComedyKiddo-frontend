@@ -32,12 +32,18 @@ class Header extends React.Component {
   }
 
   render(){
+    let profileButtonName
+    if (this.props.profileBeingViewed === this.props.currentUser) {
+      profileButtonName = 'profile'
+    } else {
+      profileButtonName = 'my profile'
+    }
     return(
       <React.Fragment>
         {(this.props.loggedIn === false) ? (null) : (
           <div id='Header'>
             <Menu className='menu-bar' >
-              <Menu.Item name='profile' active={this.props.activeHeaderItem === 'profile'} onClick={this.handleProfileClick} />
+              <Menu.Item name={profileButtonName} active={this.props.activeHeaderItem === 'profile'} onClick={this.handleProfileClick} />
               <Menu.Item
                 name='search'
                 active={this.props.activeHeaderItem === 'search'}
@@ -62,6 +68,8 @@ function mapStateToProps(state) {
   return {
     loggedIn: state.loggedIn,
     activeHeaderItem: state.activeHeaderItem,
+    currentUser: state.currentUser,
+    profileBeingViewed: state.profileBeingViewed,
   }
 }
 
