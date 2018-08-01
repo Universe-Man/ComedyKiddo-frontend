@@ -109,8 +109,21 @@ class Profile extends React.Component {
       }
       this.props.userDeletesAUser(tempAllUsers, this.props.currentUser)
     } else if (this.props.profileBeingViewed.source === "team") {
-      // team deletes
-    // } else if () {
+      let tempAllTeams = [...this.props.allTeams]
+      let teamToKill = tempAllTeams.find(team => {
+        return team.id === this.props.profileBeingViewed.id
+      })
+      let toRemoveIndex = tempAllTeams.indexOf(teamToKill)
+      tempAllTeams.splice(toRemoveIndex, 1)
+      fetch(`${teamURL}/${this.props.profileBeingViewed.id}`, {
+        method: "DELETE"
+      })
+      this.warnDeleteProfile()
+//halfway
+      this.props.userDeletesAUser(tempAllTeams, this.props.currentUser)
+
+
+    } else if (this.props.profileBeingViewed.source === "show") {
 
     }
 
