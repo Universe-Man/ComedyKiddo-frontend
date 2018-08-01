@@ -367,19 +367,31 @@ render(){
     let belowName
     let leftButton
     let rightButton
+    let profileUsers
+    let profileTeams
+    let profileShows
     if (this.props.profileBeingViewed.source === "user") {
+      profileTeams = `${this.props.profileBeingViewed.name}'s Teams`
+      profileShows = `${this.props.profileBeingViewed.name}'s Shows`
       belowName = this.props.profileBeingViewed.email
       leftButton = <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
       rightButton = <Button onClick={this.props.userDisplaysShows}>Shows</Button>
     } else if (this.props.profileBeingViewed.source === "team") {
+      profileUsers = `${this.props.profileBeingViewed.name}'s Users`
+      profileShows = `${this.props.profileBeingViewed.name}'s Shows`
       belowName = ""
       leftButton = <Button onClick={this.props.userDisplaysOtherUsers}>Users</Button>
       rightButton = <Button onClick={this.props.userDisplaysShows}>Shows</Button>
     } else if (this.props.profileBeingViewed.source === "show") {
+      profileTeams = `${this.props.profileBeingViewed.name}'s Teams`
+      profileUsers = `${this.props.profileBeingViewed.name}'s Users`
       belowName = this.props.profileBeingViewed.location
       leftButton = <Button onClick={this.props.userDisplaysOtherUsers}>Users</Button>
       rightButton = <Button onClick={this.props.userDisplaysTeams}>Teams</Button>
     }
+    console.log("profileUsers", profileUsers);
+    console.log("profileTeams", profileTeams);
+    console.log("profileShows", profileShows);
 
     return(
 
@@ -547,9 +559,11 @@ render(){
                 {(this.props.displayUsers === true) ? (
                   <React.Fragment>
                     <div id='profile-users-list'>
-                      <h4>All Blank's Users</h4>
+                      <br></br>
+                      <h4>{profileUsers}</h4>
                       {users}
                     </div>
+                    <br></br>
                     <Button primary onClick={this.props.userAddingUserTo}>Add User</Button>
                   </React.Fragment>
                     ) : (null)}
@@ -572,9 +586,11 @@ render(){
                 {(this.props.displayTeams === true) ? (
                   <React.Fragment>
                     <div id='profile-teams-list'>
-                      <h4>All User's Teams</h4>
+                      <br></br>
+                      <h4>{profileTeams}</h4>
                       {teams}
                     </div>
+                    <br></br>
                     <Button primary onClick={this.props.userCreatingNewTeam}>Create New Team</Button>
                   </React.Fragment>
                     ) : (null)}
@@ -593,9 +609,11 @@ render(){
                     {(this.props.displayShows === true) ? (
                       <React.Fragment>
                         <div id='profile-shows-list'>
-                          <h4>All User's Shows</h4>
+                          <br></br>
+                          <h4>{profileShows}</h4>
                           {shows}
                         </div>
+                        <br></br>
                         <Button primary onClick={this.props.userCreatingNewShow}>Create New Show</Button>
                       </React.Fragment>
                         ) : (null)}
