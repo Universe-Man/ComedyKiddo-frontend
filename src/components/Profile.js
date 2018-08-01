@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form, Message, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow, displayOtherUsers, addUserTo, cancelAddUserTo } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow, displayOtherUsers, addUserTo, cancelAddUserTo, deleteAUser } from '../actions/index';
 import ListItem from '../components/ListItem';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
@@ -89,19 +89,37 @@ class Profile extends React.Component {
     })
   }
 
+
+
+
   finalAnswerDeleteProfile = () => {
-    let tempAllUsers = [...this.props.allUsers]
-    let userToKill = tempAllUsers.find(user => {
-      return user.email === this.props.currentUser.email
-    })
-    let toRemoveIndex = tempAllUsers.indexOf(userToKill)
-    tempAllUsers.splice(toRemoveIndex, 1)
-    fetch(`${userURL}/${this.props.currentUser.id}`, {
-      method: "DELETE"
-    })
-    this.warnDeleteProfile()
-    this.props.userLoggingOutFromDelete(tempAllUsers)
+    if (this.props.profileBeingViewed.source === "user") {
+      let tempAllUsers = [...this.props.allUsers]
+      let userToKill = tempAllUsers.find(user => {
+        return user.email === this.props.profileBeingViewed.email
+      })
+      let toRemoveIndex = tempAllUsers.indexOf(userToKill)
+      tempAllUsers.splice(toRemoveIndex, 1)
+      fetch(`${userURL}/${this.props.profileBeingViewed.id}`, {
+        method: "DELETE"
+      })
+      this.warnDeleteProfile()
+      if (this.props.profileBeingViewed.email === this.props.currentUser.email) {
+        this.props.userLoggingOutFromDelete(tempAllUsers)
+      }
+      this.props.userDeletesAUser(tempAllUsers, this.props.currentUser)
+    } else if (this.props.profileBeingViewed.source === "team") {
+      // team deletes
+    // } else if () {
+
+    }
+
   }
+
+
+
+
+
 
   handleClickAddUserTo = () => {
     console.log("user added to thing");
@@ -110,11 +128,11 @@ class Profile extends React.Component {
   tempGetUserToAdd = () => {
 
   }
-
+////WHERE MIKE WAS HELPING ME IN THE BACKEND!!////
   handleClickCreateNewTeam = () => {
     let newTeam = {
       name: this.state.newTeamName,
-      users: [this.props.currentUser],
+      userIds: this.props.currentUser.id,
       shows: [],
       source: "team"
     }
@@ -122,6 +140,7 @@ class Profile extends React.Component {
     updateUser.teams.push(newTeam)
     let tempAllTeams = [...this.props.allTeams]
     tempAllTeams.push(newTeam)
+    debugger
     fetch(teamURL, {
       method: "POST",
       mode: "cors",
@@ -132,16 +151,8 @@ class Profile extends React.Component {
     })
     .then(res => res.json())
     .then(json => this.props.userOfficiallyCreatesTeam(json, tempAllTeams))
-    .then(
-      fetch(`${userURL}/${this.props.currentUser.id}`, {
-        method: "PATCH",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updateUser)
-      })
-    )
+    .then(this.setState({newTeamName: ""}))
+
   }
 
   handleClickCreateNewShow = () => {
@@ -585,6 +596,9 @@ function mapDispatchToProps(dispatch) {
     },
     gettingAllTheShows: (shows) => {
       dispatch(getAllShows(shows))
+    },
+    userDeletesAUser: (newSetOfUsers, currentUser) => {
+      dispatch(deleteAUser(newSetOfUsers, currentUser))
     },
     userLoggingOutFromDelete: (newSetOfUsers) => {
       dispatch(logOutFromDelete(newSetOfUsers))

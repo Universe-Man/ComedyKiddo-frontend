@@ -209,7 +209,6 @@ class Login extends React.Component {
         }
 
 
-/////////////////
         {(this.props.signUpError === true) ? (
 
           <div className="opening-login-page">
@@ -243,7 +242,6 @@ class Login extends React.Component {
         ) : (null)}
 
 
-        /////////////
 
       </React.Fragment>
       // ANOTHER WAY TO WRITE THE BUTTONS
@@ -283,8 +281,8 @@ function mapDispatchToProps(dispatch) {
     userSigningUpError: () => {
       dispatch(userSignUpError())
     },
-    userCreatingNewAccount: (newUser) => {
-      dispatch(createNewUser(newUser))
+    userCreatingNewAccount: (newUserAndCo) => {
+      dispatch(createNewUser(newUserAndCo))
     },
     userCancelsCreatingNewAccount: () => {
       dispatch(cancelCreateNewUser())

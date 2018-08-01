@@ -375,12 +375,13 @@ export const reducer = (state = initialState, action) => {
         ...state,
         addUserTo: false,
         displayUsers: false,
-        currentUser: action.payload,
-        profileBeingViewed: action.payload,
+        currentUser: action.payload.newUser,
+        profileBeingViewed: action.payload.newUser,
         loggedIn: true,
         viewingProfile: true,
         signingUp: false,
         signUpError: false,
+        allUsers: action.payload.allUsers
       }
     case "CANCEL_CREATE_USER":
       return {
@@ -393,6 +394,15 @@ export const reducer = (state = initialState, action) => {
         signUpError: false,
         viewingProfile: false,
         searching: false,
+      }
+    case "DELETE_A_USER":
+      return {
+        ...state,
+        viewingProfile: true,
+        profileBeingViewed: action.payload[1],
+        allUsers: action.payload[0],
+        editingProfile: false,
+        editingProfileError: false,
       }
     case "ADD_USER_TO":
       return {

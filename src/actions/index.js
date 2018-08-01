@@ -129,6 +129,13 @@ export function displayOtherUsers() {
   }
 }
 
+export function deleteAUser(newSetOfUsers, currentUser) {
+  return {
+    type: "DELETE_A_USER",
+    payload: [newSetOfUsers, currentUser]
+  }
+}
+
 export function displayTeams() {
   return {
     type: "DISPLAY_TEAMS"
@@ -147,10 +154,10 @@ export function displayNotes() {
   }
 }
 
-export function createNewUser(newUser) {
+export function createNewUser(newUserAndCo) {
   return {
     type: "CREATE_USER",
-    payload: newUser
+    payload: newUserAndCo
   }
 }
 
