@@ -547,7 +547,7 @@ render(){
                 {(this.props.displayUsers === true) ? (
                   <React.Fragment>
                     <div id='profile-users-list'>
-                      All Blank's Users
+                      <h4>All Blank's Users</h4>
                       {users}
                     </div>
                     <Button primary onClick={this.props.userAddingUserTo}>Add User</Button>
@@ -572,7 +572,7 @@ render(){
                 {(this.props.displayTeams === true) ? (
                   <React.Fragment>
                     <div id='profile-teams-list'>
-                      All User's Teams
+                      <h4>All User's Teams</h4>
                       {teams}
                     </div>
                     <Button primary onClick={this.props.userCreatingNewTeam}>Create New Team</Button>
@@ -593,7 +593,7 @@ render(){
                     {(this.props.displayShows === true) ? (
                       <React.Fragment>
                         <div id='profile-shows-list'>
-                          All User's Shows
+                          <h4>All User's Shows</h4>
                           {shows}
                         </div>
                         <Button primary onClick={this.props.userCreatingNewShow}>Create New Show</Button>

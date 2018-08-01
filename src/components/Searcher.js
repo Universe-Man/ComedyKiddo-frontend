@@ -105,7 +105,7 @@ class Searcher extends React.Component {
       <React.Fragment>
         {(this.props.searching === true) ? (
           <React.Fragment>
-            <SearchBar getSearchTerm={this.getSearchTerm} getSearchCategory={this.getSearchCategory} />
+            <SearchBar getSearchTerm={this.getSearchTerm} getSearchCategory={this.getSearchCategory} searchCategory={this.state.searchCategory} />
             <ResultsList filteredData={this.state.filteredData} filteredUsers={this.state.filteredUsers} filteredTeams={this.state.filteredTeams} filteredShows={this.state.filteredShows}/>
           </React.Fragment>
         ) : (null)
