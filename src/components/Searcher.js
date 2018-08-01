@@ -76,7 +76,8 @@ class Searcher extends React.Component {
         currentData = this.state.filteredShows
     } else if (this.state.searchCategory === "coach") {
         // console.log('coach');
-        currentData = this.state.filteredUsers
+        let coachUsers = this.state.filteredUsers.filter(user => user.coach === true)
+        currentData = coachUsers
     }
 
 
