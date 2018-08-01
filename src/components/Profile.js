@@ -382,8 +382,7 @@ render(){
                 ) : (null)}
 
 
-
-
+                {(this.props.profileBeingViewed === this.props.currentUser) ? (
                   <Modal
                     open={this.state.deleteWarningOpen}
                   >
@@ -404,6 +403,30 @@ render(){
                       />
                     </Modal.Actions>
                   </Modal>
+                ) : (
+                  <Modal
+                    open={this.state.deleteWarningOpen}
+                  >
+                    <Modal.Header>Delete This Account</Modal.Header>
+                    <Modal.Content>
+                      <p>Are you sure you want to delete this account</p>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button negative onClick={this.warnDeleteProfile}>
+                        No
+                      </Button>
+                      <Button
+                        positive
+                        labelPosition='right'
+                        icon='checkmark'
+                        content='Yes'
+                        onClick={this.finalAnswerDeleteProfile}
+                      />
+                    </Modal.Actions>
+                  </Modal>
+                )}
+
+
 
 
 
