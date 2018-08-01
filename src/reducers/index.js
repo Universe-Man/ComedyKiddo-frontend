@@ -203,17 +203,50 @@ export const reducer = (state = initialState, action) => {
         createShow: false,
         createNote: false,
       }
-    case "COMPLETE_EDIT_PROFILE":
+    case "COMPLETE_EDIT_A_USER_PROFILE":
       return {
         ...state,
         addUserTo: false,
         displayUsers: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
         editingProfile: false,
         editingProfileError: false,
-        currentUser: action.payload[0],
-        profileBeingViewed: action.payload[0],
-        allUsers: action.payload[1]
+        profileBeingViewed: action.payload.newUser,
+        allUsers: action.payload.allUsers
       }
+    case "COMPLETE_EDIT_A_TEAM_PROFILE":
+      return {
+        ...state,
+        addUserTo: false,
+        displayUsers: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
+        editingProfile: false,
+        editingProfileError: false,
+        profileBeingViewed: action.payload.newTeam,
+        allTeams: action.payload.allTeams
+      }
+
+    case "COMPLETE_EDIT_A_SHOW_PROFILE":
+      return {
+        ...state,
+        addUserTo: false,
+        displayUsers: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
+        editingProfile: false,
+        editingProfileError: false,
+        profileBeingViewed: action.payload.newShow,
+        allShows: action.payload.allShows
+      }
+
+
+
+
     case "CANCEL_EDIT_PROFILE":
       return {
         ...state,
@@ -226,8 +259,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         addUserTo: false,
-        displayUsers: false,
         editingProfileError: true,
+        displayUsers: false,
+        displayTeams: false,
+        displayShows: false,
+        displayNotes: false,
       }
     case "LOGOUT_FROM_DELETE":
       return {

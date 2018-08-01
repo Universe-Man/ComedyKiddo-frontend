@@ -86,10 +86,25 @@ export function editProfile() {
   }
 }
 
-export function completeEditProfile(editedUser, tempAllUsers) {
+export function completeEditAUserProfile(editedUserData) {
   return {
-    type: "COMPLETE_EDIT_PROFILE",
-    payload: [editedUser, tempAllUsers]
+    type: "COMPLETE_EDIT_A_USER_PROFILE",
+    payload: editedUserData
+  }
+}
+
+export function completeEditATeamProfile(editedTeamData) {
+  return {
+    type: "COMPLETE_EDIT_A_TEAM_PROFILE",
+    payload: editedTeamData
+  }
+}
+
+export function completeEditAShowProfile(editedShowData) {
+  console.log("editedShowData", editedShowData);
+  return {
+    type: "COMPLETE_EDIT_A_SHOW_PROFILE",
+    payload: editedShowData
   }
 }
 

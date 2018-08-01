@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/App.css';
 import { Container, Divider, Button, Form, Message, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow, displayOtherUsers, addUserTo, cancelAddUserTo, deleteAUser, deleteATeam, deleteAShow } from '../actions/index';
+import { userViewProfile, editProfile, editTeams, editShows, editNotes, displayTeams, displayShows, displayNotes, createNewTeam, createNewShow, createNewNote, cancelEditProfile, cancelCreateNewTeam, cancelCreateNewShow, cancelCreateNewNote, completeEditProfile, editProfileError, getAllUsers, getAllTeams, getAllShows, logOutFromDelete, completeCreateNewTeam, completeCreateNewShow, displayOtherUsers, addUserTo, cancelAddUserTo, deleteAUser, deleteATeam, deleteAShow, completeEditAUserProfile, completeEditATeamProfile ,completeEditAShowProfile } from '../actions/index';
 import ListItem from '../components/ListItem';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
@@ -37,50 +37,123 @@ class Profile extends React.Component {
   }
 
   handleEditProfileSubmit = () => {
-    let editedUser = {
-      name: this.state.editProfileName,
-      email: this.state.editProfileEmail,
-      img_src: this.state.editProfilePic,
-      coach: this.state.coachChecked
-    }
-    let tempEditedUser = {
-      name: this.state.editProfileName,
-      email: this.state.editProfileEmail,
-      password: this.props.currentUser.password,
-      coach: this.state.coachChecked,
-      img_src: this.state.editProfilePic,
-      source: "user"
-    }
-    let tempAllUsers = [...this.props.allUsers]
-    let userToReplace = tempAllUsers.find(user => {
-      return user.email === this.props.currentUser.email
-    })
-    let toRemoveIndex = tempAllUsers.indexOf(userToReplace)
-    // console.log('tempAllUsers', tempAllUsers);
-    tempAllUsers.splice(toRemoveIndex, 1, tempEditedUser)
-    // console.log('tempAllUsers after splice', tempAllUsers);
-    let existingUser =
-      this.props.allUsers.find(user => {
-        return user.email === editedUser.email
-      })
-      if (existingUser !== undefined) {
-        this.props.userEditingProfileError()
-      } else {
-        fetch(`${userURL}/${this.props.currentUser.id}`, {
-          method: "PATCH",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(editedUser)
-        })
-        .then(res => res.json())
-        .then(json => this.props.userOfficiallyEditsProfile(json, tempAllUsers))
-        // .then(fetch(userURL)
-        //   .then(res => res.json())
-        //   .then(json => this.props.gettingAllTheUsers(json)))
 
+    if (this.props.profileBeingViewed.source === "user") {
+      // let editedUser = {
+      //   name: this.state.editProfileName,
+      //   email: this.state.editProfileEmail,
+      //   img_src: this.state.editProfilePic,
+      //   coach: this.state.coachChecked
+      // }
+      let editedUser = {
+        name: this.state.editProfileName,
+        email: this.state.editProfileEmail,
+        password: this.props.currentUser.password,
+        coach: this.state.coachChecked,
+        img_src: this.state.editProfilePic,
+        source: "user"
       }
+      let tempAllUsers = [...this.props.allUsers]
+      let userToReplace = tempAllUsers.find(user => {
+        return user.id === this.props.profileBeingViewed.id
+      })
+      let toRemoveIndex = tempAllUsers.indexOf(userToReplace)
+      // console.log('tempAllUsers', tempAllUsers);
+      tempAllUsers.splice(toRemoveIndex, 1, editedUser)
+      // console.log('tempAllUsers after splice', tempAllUsers);
+      let existingUser =
+        this.props.allUsers.find(user => {
+          return user.email === editedUser.email
+        })
+        if (existingUser !== undefined) {
+          this.props.userEditingProfileError()
+        } else {
+          fetch(`${userURL}/${this.props.profileBeingViewed.id}`, {
+            method: "PATCH",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedUser)
+          })
+          .then(res => res.json())
+          .then(json => this.props.userOfficiallyEditsAUser(json))
+          // .then(fetch(userURL)
+          //   .then(res => res.json())
+          //   .then(json => this.props.gettingAllTheUsers(json)))
+
+        }
+    } else if (this.props.profileBeingViewed.source === "team") {
+      // let editedUser = {
+      //   name: this.state.editProfileName,
+      //   email: this.state.editProfileEmail,
+      //   img_src: this.state.editProfilePic,
+      //   coach: this.state.coachChecked
+      // }
+      let editedTeam = {
+        name: this.state.editProfileName,
+        source: "team"
+      }
+      let tempAllTeams = [...this.props.allTeams]
+      let teamToReplace = tempAllTeams.find(team => {
+        return team.id === this.props.profileBeingViewed.id
+      })
+      let toRemoveIndex = tempAllTeams.indexOf(teamToReplace)
+      // console.log('tempAllTeams', tempAllTeams);
+      tempAllTeams.splice(toRemoveIndex, 1, editedTeam)
+      // console.log('tempAllTeams after splice', tempAllTeams);
+      let existingTeam =
+        this.props.allTeams.find(team => {
+          return team.name === editedTeam.name
+        })
+        if (existingTeam !== undefined) {
+          this.props.userEditingProfileError()
+        } else {
+          fetch(`${teamURL}/${this.props.profileBeingViewed.id}`, {
+            method: "PATCH",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedTeam)
+          })
+          .then(res => res.json())
+          .then(json => this.props.userOfficiallyEditsATeam(json))
+          // .then(fetch(userURL)
+          //   .then(res => res.json())
+          //   .then(json => this.props.gettingAllTheTeams(json)))
+        }
+    } else if (this.props.profileBeingViewed.source === "show") {
+      let editedShow = {
+        name: this.state.editProfileName,
+        location: this.state.editProfileEmail,
+        source: "show"
+      }
+      let tempAllShows = [...this.props.allShows]
+      let showToReplace = tempAllShows.find(show => {
+        return show.id === this.props.profileBeingViewed.id
+      })
+      let toRemoveIndex = tempAllShows.indexOf(showToReplace)
+      tempAllShows.splice(toRemoveIndex, 1, editedShow)
+      let existingShow =
+        this.props.allShows.find(show => {
+          return show.name === editedShow.name && show.location === editedShow.location
+        })
+        if (existingShow !== undefined) {
+          this.props.userEditingProfileError()
+        } else {
+          fetch(`${showURL}/${this.props.profileBeingViewed.id}`, {
+            method: "PATCH",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(editedShow)
+          })
+          .then(res => res.json())
+          .then(json => this.props.userOfficiallyEditsAShow(json))
+        }
+    }
   }
 
   warnDeleteProfile = () => {
@@ -352,12 +425,12 @@ render(){
                 // </Container> */}
 
 
-                {(this.props.editingProfile === true && this.props.editingProfileError === false) ? (
+                {(this.props.editingProfile === true && this.props.editingProfileError === false && this.props.profileBeingViewed.source === "user") ? (
                   <Form>
                     <Form.Group widths='equal'>
-                      <Form.Input fluid label='Full Name' placeholder='Full Name' autoFocus='autofocus' onChange={this.editUserName} />
-                      <Form.Input fluid label='Email' placeholder='Email' onChange={this.editUserEmail} />
-                      <Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />
+                      <Form.Input fluid label='Full Name' placeholder='Full Name' defaultValue={this.props.profileBeingViewed.name} autoFocus='autofocus' onChange={this.editUserName} />
+                      <Form.Input fluid label='Email' placeholder='Email' defaultValue={this.props.profileBeingViewed.email} onChange={this.editUserEmail} />
+                      {/*<Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />*/}
                       <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />
                     </Form.Group>
                     <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
@@ -365,6 +438,38 @@ render(){
                     <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
                   </Form>
                 ) : (null)}
+
+                {(this.props.editingProfile === true && this.props.editingProfileError === false && this.props.profileBeingViewed.source === "team") ? (
+                  <Form>
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid label='Team Name' placeholder='Team Name' defaultValue={this.props.profileBeingViewed.name} autoFocus='autofocus' onChange={this.editUserName} />
+                      {/*<Form.Input fluid label='Email' placeholder='Email' onChange={this.editUserEmail} />
+                      <Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />
+                      <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />*/}
+                    </Form.Group>
+                    <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
+                    <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
+                    <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
+                  </Form>
+                ) : (null)}
+
+
+                {(this.props.editingProfile === true && this.props.editingProfileError === false && this.props.profileBeingViewed.source === "show") ? (
+                  <Form>
+                    <Form.Group widths='equal'>
+                      <Form.Input fluid label='Show Name' placeholder='Show Name' defaultValue={this.props.profileBeingViewed.name} autoFocus='autofocus' onChange={this.editUserName} />
+                      <Form.Input fluid label='Location' placeholder='Location' defaultValue={this.props.profileBeingViewed.location} onChange={this.editUserEmail} />
+                      {/*<Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />
+                      <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />*/}
+                    </Form.Group>
+                    <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
+                    <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
+                    <Form.Button color='red' onClick={this.warnDeleteProfile} >Delete Profile</Form.Button>
+                  </Form>
+                ) : (null)}
+
+
+
 
 
 
@@ -570,8 +675,14 @@ function mapDispatchToProps(dispatch) {
     userEditingProfile: () => {
       dispatch(editProfile())
     },
-    userOfficiallyEditsProfile: (editedUser, tempAllUsers) => {
-      dispatch(completeEditProfile(editedUser, tempAllUsers))
+    userOfficiallyEditsAUser: (editedUserData) => {
+      dispatch(completeEditAUserProfile(editedUserData))
+    },
+    userOfficiallyEditsATeam: (editedTeamData) => {
+      dispatch(completeEditATeamProfile(editedTeamData))
+    },
+    userOfficiallyEditsAShow: (editedShowData) => {
+      dispatch(completeEditAShowProfile(editedShowData))
     },
     userCancelsEditProfile: () => {
       dispatch(cancelEditProfile())
