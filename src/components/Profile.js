@@ -540,8 +540,8 @@ render(){
 
 
 
-//// ADD USER TO THING handleClickAddUserTo NEEDS TO DO SOMETHING
-//// ALSO HOW AM I GOING TO SELECT THE USER? DROPDOWN?
+{/*//// ADD USER TO THING handleClickAddUserTo NEEDS TO DO SOMETHING
+//// ALSO HOW AM I GOING TO SELECT THE USER? DROPDOWN?*/}
 
             <div id='OtherUsers'>
                 {(this.props.displayUsers === true) ? (
