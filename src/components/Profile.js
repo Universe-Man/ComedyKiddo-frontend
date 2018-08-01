@@ -232,7 +232,6 @@ class Profile extends React.Component {
     updateUser.teams.push(newTeam)
     let tempAllTeams = [...this.props.allTeams]
     tempAllTeams.push(newTeam)
-    debugger
     fetch(teamURL, {
       method: "POST",
       mode: "cors",
