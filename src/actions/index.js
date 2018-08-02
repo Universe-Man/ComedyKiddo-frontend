@@ -222,10 +222,10 @@ export function createNewTeam() {
   }
 }
 
-export function completeCreateNewTeam(newTeamAndCo) {
+export function completeCreateNewTeam(newTeam, tempAllTeams) {
   return {
     type: "COMPLETE_CREATE_NEW_TEAM",
-    payload: newTeamAndCo
+    payload: {newTeam, tempAllTeams}
   }
 }
 

@@ -44,6 +44,8 @@ class Searcher extends React.Component {
     console.log("ALLTEAMS", this.props.allTeams);
     console.log("ALLSHOWS", this.props.allShows);
     let filteredUsers = this.props.allUsers.filter(user => user.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    console.log('holy fuck is this allTeams', this.props.allTeams);
+    debugger
     let filteredTeams = this.props.allTeams.filter(team => team.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
     let filteredShows = this.props.allShows.filter(show => show.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
     this.setState({
@@ -117,6 +119,7 @@ class Searcher extends React.Component {
 }
 
 function mapStateToProps(state) {
+  console.log('%c allTeams', 'color:blue', state.allTeams);
   return {
     searching: state.searching,
     allUsers: state.allUsers,

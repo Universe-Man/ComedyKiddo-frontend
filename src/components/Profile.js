@@ -257,19 +257,24 @@ class Profile extends React.Component {
 
   }
 ////WHERE MIKE WAS HELPING ME IN THE BACKEND!!////
+// THIS WENT TERRBILY WRONG AND I HAD TO CHANGE IT, CURRENTLY NO CONNECTION OF WHO MADE THE TEAM!!
   handleClickCreateNewTeam = () => {
     let newTeam = {
       name: this.state.newTeamName,
-      userIds: this.props.currentUser.id,
+      // userIds: this.props.currentUser.id,
+      users: [this.props.currentUser],
       shows: [],
       source: "team"
     }
-    let updateUser = {...this.props.currentUser}
-    console.log('lok jelly', updateUser);
-    debugger
+    // let updateUser = {...this.props.currentUser}
+    // console.log('lok jelly', updateUser);
+    // console.log(this.props.currentUser);
+    // debugger
     // updateUser.teams.push(newTeam)
     let tempAllTeams = [...this.props.allTeams]
+    // debugger
     tempAllTeams.push(newTeam)
+    // debugger
     fetch(teamURL, {
       method: "POST",
       mode: "cors",

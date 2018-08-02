@@ -489,12 +489,14 @@ export const reducer = (state = initialState, action) => {
         createNote: false,
       }
     case "COMPLETE_CREATE_NEW_TEAM":
+    console.log('%c tempAllTeams', 'color:red', action.payload.tempAllTeams, [...state.allTeams, action.payload.newTeam]);
+
       return {
         ...state,
         addUserTo: false,
         displayUsers: false,
         createTeam: false,
-        allTeams: action.payload.allTeams,
+        allTeams: [...state.allTeams, action.payload.newTeam],
       }
     case "CANCEL_CREATE_TEAM":
       return {

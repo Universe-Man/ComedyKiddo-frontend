@@ -43,19 +43,15 @@ class Login extends React.Component {
       email: this.state.loginEmail,
       password: this.state.loginPassword
     }
-    debugger
     // console.log(currentUserLoginInfo);
     let currentUser =
       this.props.allUsers.find(user => {
         return user.email === currentUserLoginInfo.email && user.password === currentUserLoginInfo.password
       })
-      debugger
     if (currentUser === undefined) {
-      debugger
       currentUser = {};
       this.props.userLoggingInError()
     } else {
-      debugger
     // console.log(currentUser)
     this.props.userLoggingIn(currentUser)
     currentUser = {};
