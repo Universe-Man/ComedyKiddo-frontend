@@ -78,6 +78,17 @@ class Profile extends React.Component {
           })
           .then(res => res.json())
           .then(json => this.props.userOfficiallyEditsAUser(json))
+          .then(
+          fetch(userURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheUsers(json)),
+          fetch(teamURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheTeams(json)),
+          fetch(showURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheShows(json))
+          )
           // .then(fetch(userURL)
           //   .then(res => res.json())
           //   .then(json => this.props.gettingAllTheUsers(json)))
@@ -119,6 +130,17 @@ class Profile extends React.Component {
           })
           .then(res => res.json())
           .then(json => this.props.userOfficiallyEditsATeam(json))
+          .then(
+          fetch(userURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheUsers(json)),
+          fetch(teamURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheTeams(json)),
+          fetch(showURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheShows(json))
+          )
           // .then(fetch(userURL)
           //   .then(res => res.json())
           //   .then(json => this.props.gettingAllTheTeams(json)))
@@ -152,6 +174,17 @@ class Profile extends React.Component {
           })
           .then(res => res.json())
           .then(json => this.props.userOfficiallyEditsAShow(json))
+          .then(
+          fetch(userURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheUsers(json)),
+          fetch(teamURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheTeams(json)),
+          fetch(showURL)
+            .then(res => res.json())
+            .then(json => this.props.gettingAllTheShows(json))
+          )
         }
     }
   }
@@ -229,6 +262,7 @@ class Profile extends React.Component {
       source: "team"
     }
     let updateUser = {...this.props.currentUser}
+    debugger
     updateUser.teams.push(newTeam)
     let tempAllTeams = [...this.props.allTeams]
     tempAllTeams.push(newTeam)
@@ -242,6 +276,17 @@ class Profile extends React.Component {
     })
     .then(res => res.json())
     .then(json => this.props.userOfficiallyCreatesTeam(json, tempAllTeams))
+    .then(
+    fetch(userURL)
+      .then(res => res.json())
+      .then(json => this.props.gettingAllTheUsers(json)),
+    fetch(teamURL)
+      .then(res => res.json())
+      .then(json => this.props.gettingAllTheTeams(json)),
+    fetch(showURL)
+      .then(res => res.json())
+      .then(json => this.props.gettingAllTheShows(json))
+    )
     .then(this.setState({newTeamName: ""}))
 
   }
@@ -269,6 +314,17 @@ class Profile extends React.Component {
     })
     .then(res => res.json())
     .then(json => this.props.userOfficiallyCreatesShow(json, tempAllShows))
+    .then(
+    fetch(userURL)
+      .then(res => res.json())
+      .then(json => this.props.gettingAllTheUsers(json)),
+    fetch(teamURL)
+      .then(res => res.json())
+      .then(json => this.props.gettingAllTheTeams(json)),
+    fetch(showURL)
+      .then(res => res.json())
+      .then(json => this.props.gettingAllTheShows(json))
+    )
   }
 
   editUserName = (event) => {
@@ -815,6 +871,15 @@ function mapDispatchToProps(dispatch) {
     },
     userLoggingOutFromDelete: (newSetOfUsers) => {
       dispatch(logOutFromDelete(newSetOfUsers))
+    },
+    gettingAllTheUsers: (users) => {
+      dispatch(getAllUsers(users))
+    },
+    gettingAllTheTeams: (teams) => {
+      dispatch(getAllTeams(teams))
+    },
+    gettingAllTheShows: (shows) => {
+      dispatch(getAllShows(shows))
     },
   }
 }

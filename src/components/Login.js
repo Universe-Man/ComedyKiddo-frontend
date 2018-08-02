@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Checkbox, Form, Message } from 'semantic-ui-react'
 import '../assets/App.css';
 import { connect } from 'react-redux';
-import { userLogsIn, userSigningUp, userLoginError, userSignUpError, createNewUser, cancelCreateNewUser } from '../actions/index';
+import { userLogsIn, userSigningUp, userLoginError, userSignUpError, createNewUser, cancelCreateNewUser, getAllUsers, getAllTeams, getAllShows } from '../actions/index';
 import { userURL, teamURL, showURL } from '../containers/GodContainer';
 
 
@@ -91,6 +91,17 @@ class Login extends React.Component {
       })
       .then(res => res.json())
       .then(json => this.props.userCreatingNewAccount(json))
+      .then(
+      fetch(userURL)
+        .then(res => res.json())
+        .then(json => this.props.gettingAllTheUsers(json)),
+      fetch(teamURL)
+        .then(res => res.json())
+        .then(json => this.props.gettingAllTheTeams(json)),
+      fetch(showURL)
+        .then(res => res.json())
+        .then(json => this.props.gettingAllTheShows(json))
+      )
     }
   }
 
@@ -288,7 +299,16 @@ function mapDispatchToProps(dispatch) {
     },
     userCancelsCreatingNewAccount: () => {
       dispatch(cancelCreateNewUser())
-    }
+    },
+    gettingAllTheUsers: (users) => {
+      dispatch(getAllUsers(users))
+    },
+    gettingAllTheTeams: (teams) => {
+      dispatch(getAllTeams(teams))
+    },
+    gettingAllTheShows: (shows) => {
+      dispatch(getAllShows(shows))
+    },
   }
 }
 
