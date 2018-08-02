@@ -96,8 +96,9 @@
   padding: 30px;
   /* width: 70%; */
   width: 52%;
-  height: auto;
   margin: auto;
+  margin-top: 50px;
+  /* ^^ now garry is Batman */
 }
 
 #profile-name {
