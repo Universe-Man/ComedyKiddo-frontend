@@ -42,7 +42,7 @@ class Header extends React.Component {
       <React.Fragment>
         {(this.props.loggedIn === false) ? (null) : (
           <div id='Header'>
-            <Menu className='menu-bar' >
+            <Menu inverted size='huge' color='teal' className='menu-bar' >
               <Menu.Item name={profileButtonName} active={this.props.activeHeaderItem === 'profile'} onClick={this.handleProfileClick} />
               <Menu.Item
                 name='search'

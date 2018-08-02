@@ -32,6 +32,8 @@
   to { transform: rotate(360deg); }
 } */
 
+/* #b3c6ff (#043868) original background color */
+
 .App {
   text-align: center;
   background-color: #b3c6ff;
@@ -44,13 +46,13 @@
 .GodContainer {
   height: 100%;
   width: 100%;
-  background-color: #b3c6ff;
+  background-color: #054e91;
 }
 
 #SearchBar {
   position: relative;
   top: 10px;
-  background-color: #b3c6ff;
+  background-color: #054e91;
 }
 
 #search-input {
@@ -67,6 +69,7 @@
   top: 23px;
   left: 75px;
   font-size: 26px;
+  color: #34af49;
 }
 
 #search-dropdown {
