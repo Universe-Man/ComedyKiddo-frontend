@@ -5,6 +5,18 @@ body {
   background-color: yellow;
 }
 
-/* #root {
-  background-color: yellow;
-} */
+#root {
+  min-height: 100%;
+  min-width: 1024px;
+   /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  padding: 0;
+  /* background: fixed; */
+  background-color: #054e91;
+  background-repeat: repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

@@ -36,7 +36,6 @@
 
 .App {
   text-align: center;
-  background-color: #b3c6ff;
 }
 
 #Header {
@@ -93,13 +92,60 @@
 #Profile {
   background-color: #e5ffcc;
   border: solid 7px #00ffcc;
+  border-radius: 30px;
   padding: 30px;
   width: 70%;
   height: auto;
   margin: auto;
 }
 
+#profile-name {
+  position: relative;
+  top: 10px;
+  right: 150px;
+  width: 400px;
 
+}
+
+#profile-below-name {
+  position: relative;
+  bottom: 150px;
+  left: -248px;
+  width: 200px;
+}
+
+#profile-left-button {
+  position: relative;
+  bottom: 11px;
+  left: -250px;
+  width: 85px;
+  /* border: solid 2px black;
+  border-radius: 3px; */
+
+}
+
+#profile-right-button {
+  position: relative;
+  bottom: 46px;
+  right: 0px;
+  /* border: solid 2px black;
+  border-radius: 3px; */
+  width: 86.5px;
+}
+
+.edit-profile-coach-checkbox {
+  position: relative;
+  top: 30px;
+}
+
+#edit-profile-button {
+  position: relative;
+  bottom: -20px;
+  left: 10px;
+  /* border: solid 2px black;
+  border-radius: 3px; */
+  width: 126px;
+}
 
 #opening-login-page {
   position: relative;
@@ -155,8 +201,8 @@
 
 #profile-pic {
   position: relative;
-  bottom: 1500px;
-  left: 55px;
+  bottom: 75px;
+  left: 255px;
   height: 200px;
   width: 200px;
   border: solid black

@@ -400,25 +400,25 @@ render(){
               <div id='Profile'>
 
 
-                <Container textAlign='left'>
+                <Container id='profile-name' textAlign='left'>
                   <h1>{this.props.profileBeingViewed.name}</h1>
                 </Container>
-                <Container textAlign='center'>
+                <Container id='edit-profile-button' textAlign='center'>
                   <Button onClick={this.props.userEditingProfile}>Edit Profile</Button>
                 </Container>
-                <Container textAlign='right'>
+                <Container textAlign='center'>
                   <img src="https://epss.ucla.edu/media/images/profile_pictures/default.jpg" id="profile-pic"/>
                 </Container>
-                <Container textAlign='left'>
+                <Container id='profile-below-name' textAlign='left'>
                   <h3>{belowName}</h3>
                 </Container>
 
 
 
-                <Container textAlign='left'>
+                <Container id='profile-left-button' textAlign='left'>
                   {leftButton}
                 </Container>
-                <Container textAlign='center'>
+                <Container id='profile-right-button' textAlign='center'>
                   {rightButton}
                 </Container>
 
@@ -442,7 +442,7 @@ render(){
                       <Form.Input fluid label='Full Name' placeholder='Full Name' defaultValue={this.props.profileBeingViewed.name} autoFocus='autofocus' onChange={this.editUserName} />
                       <Form.Input fluid label='Email' placeholder='Email' defaultValue={this.props.profileBeingViewed.email} onChange={this.editUserEmail} />
                       {/*<Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />*/}
-                      <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />
+                      <Form.Checkbox className='edit-profile-coach-checkbox' label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />
                     </Form.Group>
                     <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
                     <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
@@ -495,7 +495,7 @@ render(){
                       <Form.Input fluid label='Full Name' defaultValue={this.props.profileBeingViewed.name} placeholder='Full Name' autoFocus='autofocus' onChange={this.editUserName} />
                       <Form.Input fluid label='Email' placeholder='Email' defaultValue={this.props.profileBeingViewed.email} onChange={this.editUserEmail} />
                       {/*<Form.Input fluid label='Upload Profile Picture' placeholder='Upload Profile Picture' onChange={this.editUserPic} />*/}
-                      <Form.Checkbox label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />
+                      <Form.Checkbox className='edit-profile-coach-checkbox' label='Are You A Coach?' checked={this.state.coachChecked} onClick={this.toggleUserCoach} />
                     </Form.Group>
                     <Form.Button primary onClick={this.handleEditProfileSubmit}>Save</Form.Button>
                     <Form.Button secondary onClick={this.props.userCancelsEditProfile}>Cancel</Form.Button>
