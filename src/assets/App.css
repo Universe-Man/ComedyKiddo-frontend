@@ -66,7 +66,7 @@
 
 
 
-.opening-login-page {
+#opening-login-page {
   position: relative;
   top: 50px;
   left: 27vw;
@@ -75,6 +75,46 @@
   height: 32vw;
   background-color: #e5ffcc;
   border: solid 7px #00ffcc;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+#opening-login-error-page {
+  position: relative;
+  top: 50px;
+  left: 27vw;
+  margin: 10vw;
+  width: 25vw;
+  height: 41vw;
+  background-color: #e5ffcc;
+  border: solid 7px #00ffcc;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+#opening-signup-page {
+  position: relative;
+  top: 50px;
+  left: 27vw;
+  margin: 10vw;
+  width: 25vw;
+  height: 36vw;
+  background-color: #e5ffcc;
+  border: solid 7px #00ffcc;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+#opening-signup-error-page {
+  position: relative;
+  top: 50px;
+  left: 27vw;
+  margin: 10vw;
+  width: 25vw;
+  height: 46.5vw;
+  background-color: #e5ffcc;
+  border: solid 7px #00ffcc;
+  border-radius: 30px;
   padding: 10px;
 }
 

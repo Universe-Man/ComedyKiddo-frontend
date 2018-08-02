@@ -135,7 +135,7 @@ class Login extends React.Component {
     return(
       <React.Fragment>
         {(this.props.signingUp === false && this.props.loggedIn === false && this.props.viewingProfile === false && this.props.searching === false && this.props.loginError === false && this.props.signUpError === false) ? (
-          <div className="opening-login-page">
+          <div id="opening-login-page">
             <h1>Welcome to Comedy Kiddo!</h1>
             <Form>
               <Form.Field>
@@ -158,7 +158,7 @@ class Login extends React.Component {
         }
 
         {(this.props.loginError === true && this.props.signingUp === false) ? (
-          <div className="opening-login-page">
+          <div id="opening-login-error-page">
             <h1>Welcome to Comedy Kiddo!</h1>
             <Form error>
               <Message
@@ -175,6 +175,7 @@ class Login extends React.Component {
                 <input onChange={this.getLoginPassword} placeholder='Password' type='password' value={this.state.loginPassword}/>
               </Form.Field>
             </Form>
+            <br></br>
             <Button primary onClick={this.handleLogin}>Login</Button>
             <br></br>
             -OR-
@@ -184,7 +185,7 @@ class Login extends React.Component {
         ) : (null)}
 
         {(this.props.signingUp === true && this.props.signUpError === false) ? (
-          <div className="opening-login-page">
+          <div id="opening-signup-page">
             <h1>Welcome to Comedy Kiddo!</h1>
             <Form onSubmit={this.handleSignUp}>
               <Form.Field>
@@ -212,7 +213,7 @@ class Login extends React.Component {
 
         {(this.props.signUpError === true) ? (
 
-          <div className="opening-login-page">
+          <div id="opening-signup-error-page">
             <h1>Welcome to Comedy Kiddo!</h1>
             <Form error onSubmit={this.handleSignUp}>
               <Message
@@ -222,15 +223,15 @@ class Login extends React.Component {
                 />
               <Form.Field>
                 <label>Full Name</label>
-                <input placeholder='Full Name' onChange={this.getSignUpName} autoFocus="autofocus" value={this.state.signUpName} />
+                <input placeholder='Full Name' onChange={this.getSignUpName} autoFocus="autofocus" />
               </Form.Field>
               <Form.Field>
                 <label>Email</label>
-                <input placeholder='Email' onChange={this.getSignUpEmail} value={this.state.signUpEmail} type='email' />
+                <input placeholder='Email' onChange={this.getSignUpEmail} type='email' />
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
-                <input placeholder='Password' onChange={this.getSignUpPassword} value={this.state.signUpPassword} type='password'/>
+                <input placeholder='Password' onChange={this.getSignUpPassword} type='password'/>
               </Form.Field>
               <Form.Field>
                 <Checkbox label='Are You A Coach?' checked={this.state.coachChecked}  onClick={this.isSignUpCoach}/>
