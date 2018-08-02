@@ -495,7 +495,7 @@ render(){
                 //   ) : (null)}
                 // </Container> */}
 
-                // REMOVED DEFAULT VALUE FROM INPUT BECAUSE IT STILL THINKS ITS EMPTY
+              {/*  // REMOVED DEFAULT VALUE FROM INPUT BECAUSE IT STILL THINKS ITS EMPTY */}
 
                 {(this.props.editingProfile === true && this.props.editingProfileError === false && this.props.profileBeingViewed.source === "user") ? (
                   <Form onSubmit={this.handleEditProfileSubmit}>
@@ -544,7 +544,7 @@ render(){
 
 
 
-// REMOVED DEFAULT VALUE FROM INPUT BECAUSE IT STILL THINKS ITS EMPTY
+{/*// REMOVED DEFAULT VALUE FROM INPUT BECAUSE IT STILL THINKS ITS EMPTY*/}
                 {(this.props.editingProfileError === true && this.props.profileBeingViewed.source === "user") ? (
                   <Form onSubmit={this.handleEditProfileSubmit} error>
                     <Message
@@ -666,11 +666,11 @@ render(){
                   </React.Fragment>
                     ) : (null)}
               {(this.props.addUserTo === true) ? (
-                <Form>
+                <Form onSubmit={this.handleClickAddUserTo}>
                   <Form.Group widths='equal'>
-                    <Form.Input fluid label='User Name' placeholder='User Name' autoFocus="autofocus" onChange={this.tempGetUserToAdd} />
+                    <Form.Input fluid label='User Name' placeholder='User Name' required="required" autoFocus="autofocus" onChange={this.tempGetUserToAdd} />
                   </Form.Group>
-                  <Form.Button primary onClick={this.handleClickAddUserTo} >Save</Form.Button>
+                  <Form.Button primary type='submit' >Save</Form.Button>
                   <Form.Button secondary onClick={this.props.userCancelAddingUserTo} >Cancel</Form.Button>
                 </Form>
               ) : (null)}
@@ -693,11 +693,11 @@ render(){
                   </React.Fragment>
                     ) : (null)}
               {(this.props.createTeam === true) ? (
-                <Form>
+                <Form onSubmit={this.handleClickCreateNewTeam}>
                   <Form.Group widths='equal'>
-                    <Form.Input fluid label='Team Name' placeholder='Team Name' autoFocus="autofocus" onChange={this.getNewTeamName} />
+                    <Form.Input fluid label='Team Name' placeholder='Team Name' required="required" autoFocus="autofocus" onChange={this.getNewTeamName} />
                   </Form.Group>
-                  <Form.Button primary onClick={this.handleClickCreateNewTeam} >Save</Form.Button>
+                  <Form.Button primary type='submit' >Save</Form.Button>
                   <Form.Button secondary onClick={this.props.userCancelsCreatingNewTeam} >Cancel</Form.Button>
                 </Form>
               ) : (null)}
@@ -716,12 +716,12 @@ render(){
                       </React.Fragment>
                         ) : (null)}
                   {(this.props.createShow === true) ? (
-                    <Form>
+                    <Form onSubmit={this.handleClickCreateNewShow}>
                       <Form.Group widths='equal'>
-                        <Form.Input fluid label='Show Name' placeholder='Show Name' autoFocus="autofocus" onChange={this.getNewShowName} />
-                        <Form.Input fluid label='Show Location' placeholder='Show Location' onChange={this.getNewShowLocation} />
+                        <Form.Input fluid label='Show Name' placeholder='Show Name' required='required' autoFocus="autofocus" onChange={this.getNewShowName} />
+                        <Form.Input fluid label='Show Location' required='required' placeholder='Show Location' onChange={this.getNewShowLocation} />
                       </Form.Group>
-                      <Form.Button primary onClick={this.handleClickCreateNewShow} >Save</Form.Button>
+                      <Form.Button primary type='submit' >Save</Form.Button>
                       <Form.Button secondary onClick={this.props.userCancelsCreatingNewShow} >Cancel</Form.Button>
                     </Form>
                   ) : (null)}
