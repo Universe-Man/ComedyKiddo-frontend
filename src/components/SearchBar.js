@@ -13,9 +13,9 @@ class SearchBar extends React.Component {
     return(
       <div id='SearchBar'>
         <form>
-          <input type='text' placeholder='Search' autoFocus='autofocus' onChange={this.props.getSearchTerm}/>
-          <label>I'm Looking For...</label>
-          <select className="ui dropdown"
+          <input id='search-input' type='text' placeholder='Search' autoFocus='autofocus' onChange={this.props.getSearchTerm}/>
+          <label id='search-label'>I'm Looking For...</label>
+          <select id='search-dropdown' size='large' className="ui dropdown"
              onChange={this.props.getSearchCategory}>
             <option value="just-browsing">Just Browsing</option>
             <option value="player-for-team">Players to Join Team</option>

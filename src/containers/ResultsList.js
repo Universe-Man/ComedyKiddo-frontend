@@ -58,11 +58,11 @@ const ResultsList = (props) => {
 
 
   return(
-    <Table size="large" celled selectable id='ResultsList'>
+    <Table color="teal" size="large" celled selectable id='ResultsList'>
       <Table.Header>
         <Table.Row textAlign='center'>
           <Table.HeaderCell width={2}>Name</Table.HeaderCell>
-          <Table.HeaderCell width={2}>Email/Location</Table.HeaderCell>
+          <Table.HeaderCell width={2}>Email / Location</Table.HeaderCell>
           <Table.HeaderCell width={2}>Coach?</Table.HeaderCell>
         </Table.Row>
       </Table.Header>

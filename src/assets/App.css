@@ -48,20 +48,53 @@
 }
 
 #SearchBar {
+  position: relative;
+  top: 10px;
   background-color: #b3c6ff;
 }
 
+#search-input {
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  top: 21px;
+  right: 65px;
+  border-radius: 20px;
+}
+
+#search-label {
+  position: relative;
+  top: 23px;
+  left: 75px;
+  font-size: 26px;
+}
+
+#search-dropdown {
+  position: relative;
+  top: 17px;
+  left: 100px;
+  size: 30px;
+}
+
 #ResultsList {
-  background-color: #b3c6ff;
+  position: relative;
+  top: 50px;
+  background-color: #e5ffcc;
+  border: solid 7px #00ffcc;
+  border-radius: 30px;
+  padding: 10px;
+  width: 90%;
+
+  margin: auto;
 }
 
 #Profile {
   background-color: #e5ffcc;
   border: solid 7px #00ffcc;
-  padding: 10px;
-  width: 90%;
-  height: 5%;
-  margin: auto
+  padding: 30px;
+  width: 70%;
+  height: auto;
+  margin: auto;
 }
 
 
