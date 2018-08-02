@@ -94,7 +94,8 @@
   border: solid 7px #00ffcc;
   border-radius: 30px;
   padding: 30px;
-  width: 70%;
+  /* width: 70%; */
+  width: 52%;
   height: auto;
   margin: auto;
 }
@@ -153,7 +154,8 @@
   left: 27vw;
   margin: 10vw;
   width: 25vw;
-  height: 32vw;
+  /* height: 32vw; */
+  height: 24vw;
   background-color: #e5ffcc;
   border: solid 7px #00ffcc;
   border-radius: 30px;
@@ -166,7 +168,8 @@
   left: 27vw;
   margin: 10vw;
   width: 25vw;
-  height: 41vw;
+  /* height: 41vw; */
+  height: 30.5vw;
   background-color: #e5ffcc;
   border: solid 7px #00ffcc;
   border-radius: 30px;
@@ -179,7 +182,8 @@
   left: 27vw;
   margin: 10vw;
   width: 25vw;
-  height: 36vw;
+  /* height: 36vw; */
+  height: 27vw;
   background-color: #e5ffcc;
   border: solid 7px #00ffcc;
   border-radius: 30px;
@@ -192,7 +196,8 @@
   left: 27vw;
   margin: 10vw;
   width: 25vw;
-  height: 46.5vw;
+  /* height: 46.5vw; */
+  height: 33.5vw;
   background-color: #e5ffcc;
   border: solid 7px #00ffcc;
   border-radius: 30px;
