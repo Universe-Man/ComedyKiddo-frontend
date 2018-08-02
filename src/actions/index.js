@@ -74,6 +74,7 @@ export function getAllShows(shows) {
 }
 
 export function renderThisProfile(profile) {
+  console.log('inside render this profile action > profile handed in', profile);
   return {
     type: "RENDER_THIS_PROFILE",
     payload: profile
@@ -221,10 +222,10 @@ export function createNewTeam() {
   }
 }
 
-export function completeCreateNewTeam(newTeam, tempAllTeams) {
+export function completeCreateNewTeam(newTeamAndCo) {
   return {
     type: "COMPLETE_CREATE_NEW_TEAM",
-    payload: [newTeam, tempAllTeams]
+    payload: newTeamAndCo
   }
 }
 

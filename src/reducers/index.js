@@ -494,7 +494,7 @@ export const reducer = (state = initialState, action) => {
         addUserTo: false,
         displayUsers: false,
         createTeam: false,
-        allTeams: action.payload[1]
+        allTeams: action.payload.allTeams,
       }
     case "CANCEL_CREATE_TEAM":
       return {
