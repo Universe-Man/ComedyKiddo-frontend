@@ -147,6 +147,7 @@ class Login extends React.Component {
                 <input onChange={this.getLoginPassword} placeholder='Password' type='password'/>
               </Form.Field>
             </Form>
+            <br></br>
             <Button primary onClick={this.handleLogin}>Login</Button>
             <br></br>
             -OR-
